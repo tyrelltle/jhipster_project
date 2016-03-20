@@ -2,6 +2,8 @@ package com.hak.haklist.web.filter;
 
 
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +18,7 @@ import java.io.IOException;
  * </p>
  */
 public class StaticResourcesProductionFilter implements Filter {
+    private final Logger log = LoggerFactory.getLogger(StaticResourcesProductionFilter.class);
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -35,6 +38,8 @@ public class StaticResourcesProductionFilter implements Filter {
         requestURI = StringUtils.substringAfter(requestURI, contextPath);
         if (StringUtils.equals("/", requestURI)) {
             requestURI = "/index.html";
+        }else if (StringUtils.equals("/app",requestURI)){
+            requestURI = "/index-haklist.html";
         }
         String newURI = "/dist" + requestURI;
         request.getRequestDispatcher(newURI).forward(request, response);

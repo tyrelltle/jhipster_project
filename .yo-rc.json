@@ -1,0 +1,24 @@
+{
+  "generator-jhipster": {
+    "baseName": "haklist",
+    "packageName": "com.hak.haklist",
+    "packageFolder": "com/hak/haklist",
+    "authenticationType": "xauth",
+    "hibernateCache": "no",
+    "clusteredHttpSession": "no",
+    "websocket": "no",
+    "databaseType": "sql",
+    "devDatabaseType": "mysql",
+    "prodDatabaseType": "mysql",
+    "searchEngine": "no",
+    "useSass": false,
+    "buildTool": "gradle",
+    "frontendBuilder": "gulp",
+    "enableTranslation": false,
+    "enableSocialSignIn": false,
+    "rememberMeKey": "6721e91895963b667e3f3e01871ac432a718b0e8",
+    "testFrameworks": [
+      "cucumber"
+    ]
+  }
+}

@@ -1,6 +1,6 @@
 'use strict';
 
 angular.module('haklistUserApp')
-    .controller('ListingController', function ($scope) {
+    .controller('SignupController', function ($scope) {
     });
 

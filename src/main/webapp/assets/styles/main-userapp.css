@@ -1,0 +1,162 @@
+/* Sticky footer styles
+-------------------------------------------------- */
+
+html,
+body {
+    height: 100%;
+    /* The html and body elements cannot have any padding or margin. */
+
+    background-color: #f5f5f5;
+
+}
+
+.paging{
+    width:342px;
+}
+.rightbtn{
+    float:right !important;
+}
+.paging > .round_button{
+    float: left;
+    background-color: white;
+    border: solid;
+    border-color: #2da84c;
+    color: #2da84c;
+    border-width: 1px;
+    margin-right: 14px;
+    width: 150px;
+}
+
+
+
+
+
+#view_profile_btn{
+    background-color: #2da84c;
+    border: none;
+    color: white;
+    padding: 8px 18px 8px 18px;
+
+}
+
+
+
+@media (min-width: 1000px) {
+    .container {
+        width: 960px;
+    }
+}
+/* Wrapper for page content to push down footer */
+#wrap {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    /* Negative indent footer by its height */
+    margin: 0 auto -60px;
+    /* Pad bottom by footer height */
+    padding: 0 0 60px;
+}
+
+/* Set the fixed height of the footer here */
+#footer {
+    height: 60px;
+    background-color: #f5f5f5;
+}
+
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+#wrap > .container {
+    padding: 60px 15px 0;
+}
+.container .credit {
+    margin: 20px 0;
+}
+
+#footer > .container {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+code {
+    font-size: 80%;
+}
+
+/*card*/
+.card{
+    margin: 10px 10px 42px 10px;
+    padding:20px;
+    background-color:white;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
+.add_yourself{
+    font-size: 10px;
+    margin-top: 4px !important;
+}
+.round_button{
+    text-align:center;
+    margin:auto;
+    background-color:#2da84c;
+    border-radius:100px;
+    padding: 10px 28px 10px 28px !important;
+    color:white;
+    border:none
+}
+
+/*specialty box*/
+.specialty_box{
+    border:none;
+}
+
+.specialty_box > span{
+    border: solid 1.5px #2da84c;
+    color: #2da84c;
+    margin: 3px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-right: 6px;
+    padding-left: 6px;
+    white-space: nowrap;
+    display: inline-block;
+}
+
+
+
+/**========================login page spcifi css
+/*login specific:*/
+.form-control{
+    border-radius:0;
+    margin-top: 13px;
+}
+
+
+/*specialty box*/
+.signup_specialty_box{
+    border: 1px solid #ccc;
+    background-color: white;
+    padding: 23px;
+    margin-top: 13px;
+
+}
+
+.signup_specialty_box > span{
+    border: solid 1.5px #2da84c;
+    color: #2da84c;
+    margin: 3px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-right: 6px;
+    padding-left: 6px;
+    white-space: nowrap;
+    display: inline-block;
+}
+

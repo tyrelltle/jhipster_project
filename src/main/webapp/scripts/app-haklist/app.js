@@ -1,16 +1,23 @@
 'use strict';
 
-angular.module('haklistUserApp', ['ui.bootstrap', 'ui.router', 'angular-loading-bar'])
+angular.module('haklistApp', ['LocalStorageModule', 'ngResource', 'ngCacheBuster',]);
 
-    .run(function ($rootScope, $location, $window, $http, $state) {
+angular.module('haklistUserApp', ['ui.bootstrap', 'ui.router', 'angular-loading-bar', 'haklistApp'])
+
+    .run(function ($rootScope, $location, $window, $http, $state, Principal, Auth) {
         $state.go('home');
 
         $rootScope.$on('$stateChangeStart', function (event, toState, toStateParams) {
             $rootScope.toState = toState;
             $rootScope.toStateParams = toStateParams;
+            if (toState.name != 'login' && toState.name != 'signup' && Principal.isIdentityResolved()) {
+                Auth.authorize();
+            }
+
+
         });
 
-        $rootScope.$on('$stateChangeSuccess',  function(event, toState, toParams, fromState, fromParams) {
+        $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
 
 
             // Remember previous state unless we've been redirected to login or we've just
@@ -24,7 +31,8 @@ angular.module('haklistUserApp', ['ui.bootstrap', 'ui.router', 'angular-loading-
 
         });
 
-        $rootScope.back = function() {
+
+        $rootScope.back = function () {
             // If previous state is 'activate' or do not exist go to 'home'
             if ($rootScope.previousStateName === 'activate' || $state.get($rootScope.previousStateName) === null) {
                 $state.go('home');
@@ -33,34 +41,74 @@ angular.module('haklistUserApp', ['ui.bootstrap', 'ui.router', 'angular-loading-
             }
         };
     })
-    .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
-
+    .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider, httpRequestInterceptorCacheBusterProvider) {
         $urlRouterProvider.otherwise('/');
         $stateProvider.state('home', {
-            url:"/",
-            views: {
-                'navbar@': {
-                    templateUrl: 'scripts/app-haklist/navbar/navbar.html',
-                    controller: 'NavbarController'
+                url: "/",
+                views: {
+                    'navbar@': {
+                        templateUrl: 'scripts/app-haklist/navbar/navbar.html',
+                        controller: 'NavbarController'
+                    },
+                    'content@': {
+                        templateUrl: 'scripts/app-haklist/listing/listing.html',
+                        controller: 'ListingController'
+                    }
                 },
-                'content@':{
-                    templateUrl: 'scripts/app-haklist/listing/listing.html',
-                    controller:'ListingController'
-                }
-            }
-        })
-        .state('signup', {
-            url:'/signup',
-            views: {
-                'navbar@': {
-                    templateUrl: 'scripts/app-haklist/navbar/navbar.html',
-                    controller: 'NavbarController'
+                resolve: {
+                    authorize: ['Auth',
+                        function (Auth) {
+                            return Auth.authorize();
+                        }
+                    ]
                 },
-                'content@':{
-                    templateUrl: 'scripts/app-haklist/signup/signup.html',
-                    controller:'SignupController'
+                data: {
+                    authorities: ['ROLE_ADMIN'],
+                    pageTitle: ''
+                },
+            })
+
+            /**
+             * TODO:
+             * remove this login when refactoring ...
+             * adding this because components/auth/auth.service.js -> authorize will redirect to 'login' state
+             * so we need a dummy login state here.
+             */
+            .state('login', {
+                url: "/login",
+                views: {
+                    'navbar@': {
+                        templateUrl: 'scripts/app-haklist/navbar/navbar.html',
+                        controller: 'NavbarController'
+                    },
+                    'content@': {
+                        templateUrl: 'scripts/app-haklist/listing/listing.html',
+                        controller: 'ListingController'
+                    }
+                },
+                data: {
+                    authorities: ['ROLE_ADMIN'],
+                    pageTitle: ''
+                },
+            })
+
+            .state('signup', {
+                url: '/signup',
+                views: {
+                    'navbar@': {
+                        templateUrl: 'scripts/app-haklist/navbar/navbar.html',
+                        controller: 'NavbarController'
+                    },
+                    'content@': {
+                        templateUrl: 'scripts/app-haklist/signup/signup.html',
+                        controller: 'SignupController'
+                    }
                 }
-            }
-        });
+            });
+
+
+        $httpProvider.interceptors.push('errorHandlerInterceptor');
+        $httpProvider.interceptors.push('authExpiredInterceptor');
+        $httpProvider.interceptors.push('authInterceptor');
 
     });

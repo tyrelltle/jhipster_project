@@ -6,29 +6,49 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">HAKLIST</a>
+            <a class="navbar-brand" href="#" ng-click="gohome()">HAKLIST</a>
         </div>
 
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" ng-if="!isAuthenticated()">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Login</a></li>
+                <li>
+                    <a href="#" data-toggle="dropdown">Login</a>
+                    <div class="dropdown-menu" style="padding: 33px; padding-bottom: 19px;">
+                        <form method="post" action="login" accept-charset="UTF-8">
+                            <input style="margin-bottom: 15px;" type="text" placeholder="Username" id="username" name="username" ng-model="user.username">
+                            <input style="margin-bottom: 15px;" type="password" placeholder="Password" id="password" name="password" ng-model="user.password">
+                            <input class="btn btn-primary btn-block" type="submit" id="sign-in" value="Sign In" ng-click="signin()">
+                        </form>
+                    </div>
+
+                </li>
+                <li>
+                    <a href="#" class="dropdown-toggle round_button add_yourself" ng-click="signup()">ADD YOURSELF</a>
+                </li>
+            </ul>
+        </div>
+
+
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" ng-if="isAuthenticated()">
+            <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle round_button add_yourself" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">ADD YOURSELF</a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{identity.firstName}} {{identity.lastName}}</a>
                     <ul class="dropdown-menu" style="width:350px;">
                         <li style="padding:40px">
                             <div class="row">
                                 <div class="col-md-4"><img width="100px" src="http://www.gravatar.com/avatar/00000000000000000000000000000000?d=monsterid&amp;f=y"></div>
                                 <div class="col-md-8" style="padding-left:30px">
-                                    <p>hellworld</p>
-                                    <p>hellworld@helloworld.com</p>
+                                    <p>{{identity.firstName}} {{identity.lastName}}</p>
+                                    <p>{{identity.email}}</p>
 
-                                    <button ng-click="signup()" id="view_profile_btn">Helloworld</button>
+                                    <button id="view_profile_btn" ng-click="viewprofile()">VIEW PROFILE</button>
                                 </div>
                             </div>
 
 
                             <hr align="CENTER" style="border-top: 1px solid #D2CBCB;">
-                            <a style="float:right" href="#">SIGN OUT</a>
+                            <a style="float:right" href="#" ng-click="signout()">SIGN OUT</a>
 
 
 
@@ -37,7 +57,6 @@
                 </li>
             </ul>
         </div>
-
 
 
     </div>

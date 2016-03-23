@@ -90,20 +90,6 @@ angular.module('haklistUserApp', ['ui.bootstrap', 'ui.router', 'angular-loading-
                     authorities: ['ROLE_ADMIN'],
                     pageTitle: ''
                 },
-            })
-
-            .state('signup', {
-                url: '/signup',
-                views: {
-                    'navbar@': {
-                        templateUrl: 'scripts/app-haklist/navbar/navbar.html',
-                        controller: 'NavbarController'
-                    },
-                    'content@': {
-                        templateUrl: 'scripts/app-haklist/signup/signup.html',
-                        controller: 'SignupController'
-                    }
-                }
             });
 
 

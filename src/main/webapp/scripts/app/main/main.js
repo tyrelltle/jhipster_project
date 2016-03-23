@@ -16,7 +16,7 @@ angular.module('haklistApp')
                     }
                 },
                 resolve: {
-                    
+
                 }
             });
     });

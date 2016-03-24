@@ -31,7 +31,7 @@ public class User extends AbstractAuditingEntity implements Serializable {
 
     @JsonIgnore
     @NotNull
-    @Size(min = 60, max = 60) 
+    @Size(min = 60, max = 60)
     @Column(name = "password_hash",length = 60)
     private String password;
 
@@ -67,6 +67,11 @@ public class User extends AbstractAuditingEntity implements Serializable {
     @Column(name = "reset_date", nullable = true)
     private ZonedDateTime resetDate = null;
 
+    @OneToOne()
+    @JoinColumn(name = "user_profile_id")
+    @JsonIgnore
+    private UserProfile userProfile;
+
     @JsonIgnore
     @ManyToMany
     @JoinTable(
@@ -89,6 +94,14 @@ public class User extends AbstractAuditingEntity implements Serializable {
 
     public void setLogin(String login) {
         this.login = login;
+    }
+
+    public UserProfile getUserProfile() {
+        return userProfile;
+    }
+
+    public void setUserProfile(UserProfile userProfile) {
+        this.userProfile = userProfile;
     }
 
     public String getPassword() {

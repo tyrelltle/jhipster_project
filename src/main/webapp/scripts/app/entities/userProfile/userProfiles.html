@@ -1,0 +1,66 @@
+<div>
+    <h2>UserProfiles</h2>
+    <jh-alert></jh-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="userProfile.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span
+                       >Create new UserProfile
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="predicate" ascending="reverse" callback="reset()">
+                    <th jh-sort-by="id"><span>ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="linkedin_path"><span>Linkedin_path</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="github_path"><span>Github_path</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="twitter_path"><span>Twitter_path</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="website"><span>Website</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="country"><span>Country</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="company"><span>Company</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll="loadPage(page + 1)" infinite-scroll-disabled="links['last'] == page">
+                <tr ng-repeat="userProfile in userProfiles track by userProfile.id">
+                    <td><a ui-sref="userProfile.detail({id:userProfile.id})">{{userProfile.id}}</a></td>
+                    <td>{{userProfile.linkedin_path}}</td>
+                    <td>{{userProfile.github_path}}</td>
+                    <td>{{userProfile.twitter_path}}</td>
+                    <td>{{userProfile.website}}</td>
+                    <td>{{userProfile.country}}</td>
+                    <td>{{userProfile.company}}</td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="userProfile.detail({id:userProfile.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="userProfile.edit({id:userProfile.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="userProfile.delete({id:userProfile.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

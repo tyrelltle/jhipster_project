@@ -1,0 +1,47 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "user",
+            "otherEntityName": "user",
+            "relationshipType": "one-to-one",
+            "ownerSide": false
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "linkedin_path",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "github_path",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "twitter_path",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 4,
+            "fieldName": "website",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 5,
+            "fieldName": "country",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 6,
+            "fieldName": "company",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20160324042314",
+    "dto": "no",
+    "service": "serviceClass",
+    "pagination": "infinite-scroll"
+}

@@ -2,13 +2,15 @@ package com.hak.haklist.service;
 
 import com.hak.haklist.domain.Authority;
 import com.hak.haklist.domain.User;
+import com.hak.haklist.domain.UserProfile;
 import com.hak.haklist.repository.AuthorityRepository;
+import com.hak.haklist.repository.UserProfileRepository;
 import com.hak.haklist.repository.UserRepository;
 import com.hak.haklist.security.SecurityUtils;
 import com.hak.haklist.service.util.RandomUtil;
 import com.hak.haklist.web.rest.dto.ManagedUserDTO;
-import java.time.ZonedDateTime;
-import java.time.LocalDate;
+import com.hak.haklist.web.rest.dto.UserExtDTO;
+import com.hak.haklist.web.rest.dto.UserProfileDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -16,9 +18,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.ZonedDateTime;
 import javax.inject.Inject;
-import java.util.*;
+import java.time.ZonedDateTime;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 /**
  * Service class for managing users.
@@ -34,6 +39,9 @@ public class UserService {
 
     @Inject
     private UserRepository userRepository;
+
+    @Inject
+    private UserProfileRepository userProfileRepository;
 
     @Inject
     private AuthorityRepository authorityRepository;
@@ -101,6 +109,43 @@ public class UserService {
         authorities.add(authority);
         newUser.setAuthorities(authorities);
         userRepository.save(newUser);
+        log.debug("Created Information for User: {}", newUser);
+        return newUser;
+    }
+
+    public User createUserInformation(UserExtDTO userExtDTO) {
+        User newUser = new User();
+        Authority authority = authorityRepository.findOne("ROLE_USER");
+        Set<Authority> authorities = new HashSet<>();
+        String encryptedPassword = passwordEncoder.encode(userExtDTO.getPassword());
+        newUser.setLogin(userExtDTO.getLogin());
+        // new user gets initially a generated password
+        newUser.setPassword(encryptedPassword);
+        newUser.setFirstName(userExtDTO.getFirstName());
+        newUser.setLastName(userExtDTO.getLastName());
+        newUser.setEmail(userExtDTO.getEmail());
+        newUser.setLangKey(userExtDTO.getLangKey());
+        // new user is not active
+        newUser.setActivated(false);
+        // new user gets registration key
+        newUser.setActivationKey(RandomUtil.generateActivationKey());
+        authorities.add(authority);
+        newUser.setAuthorities(authorities);
+        newUser = userRepository.save(newUser);
+
+        UserProfileDTO userProfileDTO = userExtDTO.getUserProfile();
+        if (userProfileDTO != null) {
+            UserProfile userProfile = new UserProfile();
+            userProfile.setCompany(userProfileDTO.getCompany());
+            userProfile.setCountry(userProfileDTO.getCountry());
+            userProfile.setGithub_path(userProfileDTO.getGitHub());
+            userProfile.setLinkedin_path(userProfileDTO.getLinkedIn());
+            userProfile.setTwitter_path(userProfileDTO.getTwitter());
+            userProfile.setWebsite(userProfileDTO.getPersonalSite());
+            userProfile.setUser(newUser);
+            userProfileRepository.save(userProfile);
+        }
+
         log.debug("Created Information for User: {}", newUser);
         return newUser;
     }

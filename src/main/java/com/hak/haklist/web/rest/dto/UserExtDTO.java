@@ -35,7 +35,7 @@ public class UserExtDTO extends UserDTO {
             ", activated=" + isActivated() +
             ", langKey='" + getLangKey() + '\'' +
             ", authorities=" + getAuthorities() +
-            ", userProfileDto=" + userProfile == null ? "" : userProfile.toString() +
+            ", userProfileDto=" + (userProfile == null ? "" : userProfile.toString()) +
             "}";
     }
 }

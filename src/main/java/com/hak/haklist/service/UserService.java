@@ -126,9 +126,10 @@ public class UserService {
         newUser.setEmail(userExtDTO.getEmail());
         newUser.setLangKey(userExtDTO.getLangKey());
         // new user is not active
-        newUser.setActivated(false);
+        //TODO: enable email-activation walkflow after POC phrase
+        newUser.setActivated(true);
         // new user gets registration key
-        newUser.setActivationKey(RandomUtil.generateActivationKey());
+        //newUser.setActivationKey(RandomUtil.generateActivationKey());
         authorities.add(authority);
         newUser.setAuthorities(authorities);
         newUser = userRepository.save(newUser);

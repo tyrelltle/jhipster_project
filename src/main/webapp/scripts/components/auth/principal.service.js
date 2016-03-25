@@ -24,7 +24,7 @@ angular.module('haklistApp')
                 });
             },
             hasAnyAuthority: function (authorities) {
-                if (!_authenticated || !_identity || !_identity.authorities) {
+                /**if (!_authenticated || !_identity || !_identity.authorities) {
                     return false;
                 }
 
@@ -32,9 +32,10 @@ angular.module('haklistApp')
                     if (_identity.authorities.indexOf(authorities[i]) !== -1) {
                         return true;
                     }
-                }
+                }**/
+                //TODO: after POC phrase, re-enable authority check
 
-                return false;
+                return true;
             },
             authenticate: function (identity) {
                 _identity = identity;

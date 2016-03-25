@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('haklistApp')
-    .factory('Auth', function Auth($rootScope, $state, $q, Principal, AuthServerProvider, Account, Register, Activate, Password, PasswordResetInit, PasswordResetFinish) {
+    .factory('Auth', function Auth($rootScope, $state, $q, Principal, AuthServerProvider, Account, Register, Activate, Password, PasswordResetInit, PasswordResetFinish,RegisterExt) {
         return {
             login: function (credentials, callback) {
                 var cb = callback || angular.noop;
@@ -68,7 +68,21 @@ angular.module('haklistApp')
                         this.logout();
                         return cb(err);
                     }.bind(this)).$promise;
+            }
+            ,
+            createAccountExt: function (account, callback) {
+                var cb = callback || angular.noop;
+
+                return RegisterExt.save(account,
+                    function () {
+                        return cb(account);
+                    },
+                    function (err) {
+                        this.logout();
+                        return cb(err);
+                    }.bind(this)).$promise;
             },
+
 
             updateAccount: function (account, callback) {
                 var cb = callback || angular.noop;

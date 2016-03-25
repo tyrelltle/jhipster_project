@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
-    <changeSet author="sophiaweng (generated)" id="1458806821004-1">
+    <changeSet author="sophiaweng (generated)" id="1458802815328-1">
         <createTable tableName="jhi_authority">
             <column name="name" type="VARCHAR(50)">
                 <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="sophiaweng (generated)" id="1458806821004-2">
+    <changeSet author="sophiaweng (generated)" id="1458802815328-2">
         <createTable tableName="jhi_persistent_audit_event">
             <column autoIncrement="true" name="event_id" type="BIGINT">
                 <constraints primaryKey="true" primaryKeyName="jhi_persistent_audit_eventPK"/>
@@ -19,7 +19,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="sophiaweng (generated)" id="1458806821004-3">
+    <changeSet author="sophiaweng (generated)" id="1458802815328-3">
         <createTable tableName="jhi_persistent_audit_evt_data">
             <column name="event_id" type="BIGINT">
                 <constraints nullable="false"/>
@@ -30,7 +30,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="sophiaweng (generated)" id="1458806821004-4">
+    <changeSet author="sophiaweng (generated)" id="1458802815328-4">
         <createTable tableName="jhi_user">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true" primaryKeyName="jhi_userPK"/>
@@ -60,7 +60,7 @@
             <column name="user_profile_id" type="BIGINT"/>
         </createTable>
     </changeSet>
-    <changeSet author="sophiaweng (generated)" id="1458806821004-5">
+    <changeSet author="sophiaweng (generated)" id="1458802815328-5">
         <createTable tableName="jhi_user_authority">
             <column name="user_id" type="BIGINT">
                 <constraints nullable="false"/>
@@ -70,7 +70,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="sophiaweng (generated)" id="1458806821004-6">
+    <changeSet author="sophiaweng (generated)" id="1458802815328-6">
         <createTable tableName="tag">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true" primaryKeyName="tagPK"/>
@@ -80,7 +80,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="sophiaweng (generated)" id="1458806821004-7">
+    <changeSet author="sophiaweng (generated)" id="1458802815328-7">
         <createTable tableName="user_profile">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true" primaryKeyName="user_profilePK"/>
@@ -93,7 +93,7 @@
             <column name="website" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
-    <changeSet author="sophiaweng (generated)" id="1458806821004-8">
+    <changeSet author="sophiaweng (generated)" id="1458802815328-8">
         <createTable tableName="user_tag">
             <column name="userProfiles_id" type="BIGINT">
                 <constraints nullable="false"/>
@@ -103,37 +103,37 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="sophiaweng (generated)" id="1458806821004-9">
+    <changeSet author="sophiaweng (generated)" id="1458802815328-9">
         <addPrimaryKey columnNames="event_id, name" tableName="jhi_persistent_audit_evt_data"/>
     </changeSet>
-    <changeSet author="sophiaweng (generated)" id="1458806821004-10">
+    <changeSet author="sophiaweng (generated)" id="1458802815328-10">
         <addPrimaryKey columnNames="user_id, authority_name" tableName="jhi_user_authority"/>
     </changeSet>
-    <changeSet author="sophiaweng (generated)" id="1458806821004-11">
+    <changeSet author="sophiaweng (generated)" id="1458802815328-11">
         <addPrimaryKey columnNames="name" constraintName="jhi_authorityPK" tableName="jhi_authority"/>
     </changeSet>
-    <changeSet author="sophiaweng (generated)" id="1458806821004-12">
+    <changeSet author="sophiaweng (generated)" id="1458802815328-12">
         <addUniqueConstraint columnNames="email" constraintName="UC_JHI_USEREMAIL_COL" tableName="jhi_user"/>
     </changeSet>
-    <changeSet author="sophiaweng (generated)" id="1458806821004-13">
+    <changeSet author="sophiaweng (generated)" id="1458802815328-13">
         <addUniqueConstraint columnNames="login" constraintName="UC_JHI_USERLOGIN_COL" tableName="jhi_user"/>
     </changeSet>
-    <changeSet author="sophiaweng (generated)" id="1458806821004-14">
+    <changeSet author="sophiaweng (generated)" id="1458802815328-14">
         <addForeignKeyConstraint baseColumnNames="event_id" baseTableName="jhi_persistent_audit_evt_data" constraintName="FK_evb970jo5bi8aon8s65c0lyyn" deferrable="false" initiallyDeferred="false" referencedColumnNames="event_id" referencedTableName="jhi_persistent_audit_event"/>
     </changeSet>
-    <changeSet author="sophiaweng (generated)" id="1458806821004-15">
+    <changeSet author="sophiaweng (generated)" id="1458802815328-15">
         <addForeignKeyConstraint baseColumnNames="user_profile_id" baseTableName="jhi_user" constraintName="FK_g1mal2xd9q0acefeoyw611dki" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="user_profile"/>
     </changeSet>
-    <changeSet author="sophiaweng (generated)" id="1458806821004-16">
+    <changeSet author="sophiaweng (generated)" id="1458802815328-16">
         <addForeignKeyConstraint baseColumnNames="authority_name" baseTableName="jhi_user_authority" constraintName="FK_ik5r332jlvpolfr7e5n7oi42l" deferrable="false" initiallyDeferred="false" referencedColumnNames="name" referencedTableName="jhi_authority"/>
     </changeSet>
-    <changeSet author="sophiaweng (generated)" id="1458806821004-17">
+    <changeSet author="sophiaweng (generated)" id="1458802815328-17">
         <addForeignKeyConstraint baseColumnNames="userProfiles_id" baseTableName="user_tag" constraintName="FK_kmh4l6ojm0be6e2ogq2ccu1dv" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="user_profile"/>
     </changeSet>
-    <changeSet author="sophiaweng (generated)" id="1458806821004-18">
+    <changeSet author="sophiaweng (generated)" id="1458802815328-18">
         <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="jhi_user_authority" constraintName="FK_pg0oaw6mr9pt3ibeihdc1jwof" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"/>
     </changeSet>
-    <changeSet author="sophiaweng (generated)" id="1458806821004-19">
+    <changeSet author="sophiaweng (generated)" id="1458802815328-19">
         <addForeignKeyConstraint baseColumnNames="tags_id" baseTableName="user_tag" constraintName="FK_q5v1efyeiqamr7e23t4ckdkke" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="tag"/>
     </changeSet>
 </databaseChangeLog>

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -15,6 +16,7 @@ public class UserProfile implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private Long id;
 
     @Column(name = "linkedin_path")
@@ -38,6 +40,17 @@ public class UserProfile implements Serializable {
     @OneToOne(mappedBy = "userProfile")
     @JsonIgnore
     private User user;
+
+    @JoinTable(name = "user_tag",
+        joinColumns = {
+            @JoinColumn(name = "user_profiles_id", referencedColumnName = "id")
+        },
+        inverseJoinColumns = {
+            @JoinColumn(name = "tags_id", referencedColumnName = "id")
+        }
+    )
+    @ManyToMany
+    private Collection<Tag> tags;
 
     public Long getId() {
         return id;
@@ -103,6 +116,14 @@ public class UserProfile implements Serializable {
         this.user = user;
     }
 
+    public Collection<Tag> getTags() {
+        return tags;
+    }
+
+    public void setTags(Collection<Tag> tags) {
+        this.tags = tags;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -112,7 +133,7 @@ public class UserProfile implements Serializable {
             return false;
         }
         UserProfile userProfile = (UserProfile) o;
-        if(userProfile.id == null || id == null) {
+        if (userProfile.id == null || id == null) {
             return false;
         }
         return Objects.equals(id, userProfile.id);

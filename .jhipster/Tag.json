@@ -1,0 +1,26 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "userProfile",
+            "otherEntityName": "userProfile",
+            "relationshipType": "many-to-many",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "tag"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20160324062539",
+    "dto": "no",
+    "service": "serviceClass",
+    "pagination": "infinite-scroll"
+}

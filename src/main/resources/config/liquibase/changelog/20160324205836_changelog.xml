@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet author="sophiaweng (generated)" id="1458878357426-1">
+        <addColumn tableName="user_tag">
+            <column name="user_profiles_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="sophiaweng (generated)" id="1458878357426-2">
+        <addPrimaryKey columnNames="tags_id, user_profiles_id" tableName="user_tag"/>
+    </changeSet>
+    <changeSet author="sophiaweng (generated)" id="1458878357426-3">
+        <addForeignKeyConstraint baseColumnNames="user_profiles_id" baseTableName="user_tag" constraintName="FK_8p1kpljp9ts997cqvswsns3ia" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="user_profile"/>
+    </changeSet>
+    <changeSet author="sophiaweng (generated)" id="1458878357426-4">
+        <dropForeignKeyConstraint baseTableName="user_tag" constraintName="FK_kmh4l6ojm0be6e2ogq2ccu1dv"/>
+    </changeSet>
+    <changeSet author="sophiaweng (generated)" id="1458878357426-5">
+        <dropColumn columnName="userProfiles_id" tableName="user_tag"/>
+    </changeSet>
+</databaseChangeLog>

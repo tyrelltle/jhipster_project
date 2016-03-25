@@ -1,7 +1,6 @@
 package com.hak.haklist.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
-import com.hak.haklist.domain.Authority;
 import com.hak.haklist.domain.User;
 import com.hak.haklist.repository.UserRepository;
 import com.hak.haklist.security.SecurityUtils;
@@ -9,8 +8,8 @@ import com.hak.haklist.service.MailService;
 import com.hak.haklist.service.UserService;
 import com.hak.haklist.web.rest.dto.KeyAndPasswordDTO;
 import com.hak.haklist.web.rest.dto.UserDTO;
+import com.hak.haklist.web.rest.dto.UserExtDTO;
 import com.hak.haklist.web.rest.util.HeaderUtil;
-
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,9 +21,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-import java.util.*;
+import java.util.Optional;
 
 /**
  * REST controller for managing the current user's account.
@@ -72,6 +69,27 @@ public class AccountResource {
                 })
         );
     }
+
+    /**
+     * POST  /register -> signup the user from haklist's angular signup page.
+     */
+    @RequestMapping(value = "/signup",
+        method = RequestMethod.POST,
+        produces = MediaType.TEXT_PLAIN_VALUE)
+    @Timed
+    public ResponseEntity<?> registerAccount(@Valid @RequestBody UserExtDTO userDTO, HttpServletRequest request) {
+        return userRepository.findOneByLogin(userDTO.getLogin())
+            .map(user -> new ResponseEntity<>("login already in use", HttpStatus.BAD_REQUEST))
+            .orElseGet(() -> userRepository.findOneByEmail(userDTO.getEmail())
+                .map(user -> new ResponseEntity<>("e-mail address already in use", HttpStatus.BAD_REQUEST))
+                .orElseGet(() -> {
+                    userService.createUserInformation(userDTO);
+                    return new ResponseEntity<>(HttpStatus.CREATED);
+                })
+            );
+    }
+
+
 
     /**
      * GET  /activate -> activate the registered user.

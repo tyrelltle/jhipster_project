@@ -9,7 +9,7 @@ import com.hak.haklist.security.AuthoritiesConstants;
 import com.hak.haklist.service.MailService;
 import com.hak.haklist.service.UserService;
 import com.hak.haklist.web.rest.dto.ManagedUserDTO;
-import com.hak.haklist.web.rest.dto.UserDTO;
+import com.hak.haklist.web.rest.dto.UserExtDTO;
 import com.hak.haklist.web.rest.util.HeaderUtil;
 import com.hak.haklist.web.rest.util.PaginationUtil;
 import org.slf4j.Logger;
@@ -25,10 +25,12 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import java.net.URI;
 import java.net.URISyntaxException;
-import javax.servlet.http.HttpServletRequest;
-import java.util.*;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -162,14 +164,14 @@ public class UserResource {
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     @Transactional(readOnly = true)
-    public ResponseEntity<List<ManagedUserDTO>> getAllUsers(Pageable pageable)
+    public ResponseEntity<List<UserExtDTO>> getAllUsers(Pageable pageable)
         throws URISyntaxException {
         Page<User> page = userRepository.findAll(pageable);
-        List<ManagedUserDTO> managedUserDTOs = page.getContent().stream()
-            .map(user -> new ManagedUserDTO(user))
+        List<UserExtDTO> userExtDTOs = page.getContent().stream()
+            .map(user -> new UserExtDTO(user))
             .collect(Collectors.toList());
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/users");
-        return new ResponseEntity<>(managedUserDTOs, headers, HttpStatus.OK);
+        return new ResponseEntity<>(userExtDTOs, headers, HttpStatus.OK);
     }
 
     /**

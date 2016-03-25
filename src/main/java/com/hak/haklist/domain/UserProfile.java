@@ -37,7 +37,7 @@ public class UserProfile implements Serializable {
     @Column(name = "company")
     private String company;
 
-    @OneToOne(mappedBy = "userProfile")
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "userProfile", fetch = FetchType.LAZY)
     @JsonIgnore
     private User user;
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <databaseChangeLog
-    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
 <!--
@@ -13,6 +13,8 @@
     <include file="classpath:config/liquibase/changelog/20160324205836_changelog.xml" relativeToChangelogFile="false"/>
 
 
+    <include file="classpath:config/liquibase/changelog/20160326042515_added_entity_Country.xml"
+             relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
 
 

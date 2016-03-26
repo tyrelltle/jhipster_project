@@ -100,6 +100,26 @@ public class CountryResource {
             .collect(Collectors.toCollection(LinkedList::new)), headers, HttpStatus.OK);
     }
 
+
+    /**
+     * GET  /country -> get all the countries with out pagination.
+     */
+    @RequestMapping(value = "/country/list",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    @Transactional(readOnly = true)
+    public ResponseEntity<List<CountryDTO>> getAllCountries()
+        throws URISyntaxException {
+        log.debug("REST request to get a page of Countries");
+        List<Country> countries = countryRepository.findAll();
+        return new ResponseEntity<>(countries.stream()
+            .map(countryMapper::countryToCountryDTO)
+            .collect(Collectors.toCollection(LinkedList::new)),  HttpStatus.OK);
+    }
+
+
+
     /**
      * GET  /country/:id -> get the "id" country.
      */

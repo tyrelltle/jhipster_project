@@ -1,15 +1,27 @@
 'use strict';
 
 angular.module('haklistUserApp')
-    .controller('SignupController', function ($scope,$state,Auth) {
+    .controller('SignupController', function ($scope,$state,Auth,Country) {
         $scope.registerAccount={
             langKey:'en',
             userProfile:{
                 country:'ch'
             }
         };
+        $scope.selectCountry={};
 
+
+        //TODO: country logics can be encapsulated in a dedicated Directive, do it after phase one
+        Country.query({}, function (result) {
+            $scope.countries=result;
+        });
+
+        $scope.country_select=function(index){
+            event.preventDefault();
+            $scope.selectCountry=$scope.countries[index];
+        }
         $scope.confirm = function () {
+            $scope.registerAccount.userProfile.company=$scope.selectCountry?$scope.selectCountry.country_code:"CH";
             if($scope.registerAccount.email.indexOf('@')<0){
                 alert('not valid email address!');
                 return;

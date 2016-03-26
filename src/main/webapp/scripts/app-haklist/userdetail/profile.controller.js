@@ -11,7 +11,7 @@ angular.module('haklistUserApp')
             Country.query({}, function (result) {
                 $scope.countries=result;
                 $scope.countries.forEach(function(country){
-                    if(country.country_code==$scope.registerAccount.userProfile.company)
+                    if(country.country_code==$scope.registerAccount.userProfile.country)
                         $scope.selectCountry=country;
                 });
 

@@ -5,7 +5,7 @@ angular.module('haklistUserApp')
         $scope.registerAccount={
             langKey:'en',
             userProfile:{
-                country:'ch'
+                country:'CH'
             }
         };
         $scope.selectCountry={};
@@ -21,7 +21,7 @@ angular.module('haklistUserApp')
             $scope.selectCountry=$scope.countries[index];
         }
         $scope.confirm = function () {
-            $scope.registerAccount.userProfile.company=$scope.selectCountry?$scope.selectCountry.country_code:"CH";
+            $scope.registerAccount.userProfile.country=$scope.selectCountry?$scope.selectCountry.country_code:"CH";
             if($scope.registerAccount.email.indexOf('@')<0){
                 alert('not valid email address!');
                 return;

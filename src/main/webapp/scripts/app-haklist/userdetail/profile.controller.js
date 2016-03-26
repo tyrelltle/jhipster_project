@@ -25,7 +25,7 @@ angular.module('haklistUserApp')
         }
 
         $scope.confirm=function(){
-            $scope.registerAccount.userProfile.company=$scope.selectCountry?$scope.selectCountry.country_code:"CH";
+            $scope.registerAccount.userProfile.country=$scope.selectCountry?$scope.selectCountry.country_code:"CH";
             UserProfile.updateExt($scope.registerAccount,
             function(data) {
                 alert('Successfully Updated Your Profile!');

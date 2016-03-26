@@ -4,8 +4,8 @@
     </div>
 
     <div class="row" ng-repeat="profile in userProfiles" ng-if="$index % 3 == 0">
-        <div class="col-md-4" ng-repeat="i in [0,1,2]">
-            <div class="card mycard" ng-if="($parent.$index+i)<userProfiles.length">
+        <div class="col-md-4" ng-repeat="i in getProfileListNumArr($index)" >
+            <div class="card mycard" >
                 <img class="card-img-top"
                      src="http://www.gravatar.com/avatar/00000000000000000000000000000000?d=monsterid&amp;f=y"
                      alt="Card image cap">
@@ -13,9 +13,9 @@
                     <h3 class="card-title">{{userProfiles[$parent.$index+i].firstName}} {{userProfiles[$parent.$index+i].lastName}}</h3>
                     <h6 class="card-title">Worked at {{userProfiles[$parent.$index+i].company}}</h6>
                     <div style="margin-top: 30px;">
-                        <h6><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> {{userProfiles[$parent.$index+i].country}}</h6>
+                        <h6><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> {{lookupCountryName(userProfiles[$parent.$index+i].country)}}</h6>
                         <h6><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> {{userProfiles[$parent.$index+i].email}}</h6>
-                        <h6><span class="glyphicon glyphicon-link" aria-hidden="true"></span>{{userProfiles[$parent.$index+i].website}}</h6>
+                        <h6><span class="glyphicon glyphicon-link" aria-hidden="true"></span>{{userProfiles[$parent.$index+i].personalSite}}</h6>
                     </div>
 
                     <hr align="CENTER" style="border-top: 1px solid #D2CBCB;">

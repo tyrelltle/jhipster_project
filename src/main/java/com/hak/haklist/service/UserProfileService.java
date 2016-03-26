@@ -121,6 +121,8 @@ public class UserProfileService {
             userProfile.setLinkedin_path(userExtDTO.getUserProfile().getLinkedIn());
             userProfile.setTwitter_path(userExtDTO.getUserProfile().getTwitter());
             userProfileRepository.save(userProfile);
+            log.debug("Changed Information for UserProfile: {}", userProfile);
+
         });
 
     }

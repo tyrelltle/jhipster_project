@@ -21,6 +21,7 @@ angular.module('haklistUserApp')
             $scope.loadAll();
         };
         $scope.loadPage = function(page) {
+            $scope.clear();
             $scope.page = page;
             $scope.loadAll();
         };
@@ -33,17 +34,6 @@ angular.module('haklistUserApp')
         };
 
         $scope.clear = function () {
-            $scope.userProfile = {
-                linkedin_path: null,
-                firstName:null,
-                lastName:null,
-                email:null,
-                github_path: null,
-                twitter_path: null,
-                website: null,
-                country: null,
-                company: null,
-                id: null
-            };
+            $scope.userProfiles = [];
         };
     });

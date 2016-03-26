@@ -1,0 +1,9 @@
+#this sql is for create test data in user_tag table, should run after initializing tag table with ../tag.csv
+
+delete from user_tag;
+
+insert into user_tag (tags_id,user_profiles_id)
+select tag.id, prof.id
+from user_profile prof
+inner join tag tag
+where tag.id in (1,3,5,6);

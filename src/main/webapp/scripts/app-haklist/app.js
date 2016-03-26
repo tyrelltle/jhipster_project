@@ -56,11 +56,7 @@ angular.module('haklistUserApp', ['ui.bootstrap', 'ui.router', 'angular-loading-
                     }
                 },
                 resolve: {
-                    authorize: ['Auth',
-                        function (Auth) {
-                            return Auth.authorize();
-                        }
-                    ]
+
                 },
                 data: {
                     authorities: ['ROLE_ADMIN'],

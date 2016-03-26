@@ -39,7 +39,7 @@ You must provide <b>at least</b> one of the following 4 options
 </div>
 <input type="text" class="form-control" placeholder="Where are you working at (Leave it empty will be filled with 'Hire Me'" aria-label="Text input with segmented button dropdown"  ng-model="registerAccount.userProfile.company">
 <input type="text" class="form-control" placeholder="E-mail Address" aria-label="Text input with segmented button dropdown" ng-model="registerAccount.email">
-<input type="text" class="form-control" placeholder="Password" aria-label="Text input with segmented button dropdown" ng-model="registerAccount.password">
+<input ng-if="!editmode" type="text" class="form-control" placeholder="Password" aria-label="Text input with segmented button dropdown" ng-model="registerAccount.password">
 
 <br><br>
 You must provide <b>at least</b> one of the following <b>specialties</b>. Maximal four.
@@ -58,6 +58,9 @@ You must provide <b>at least</b> one of the following <b>specialties</b>. Maxima
 </div>
 <br><br><br>
 
-<button class="round_button center" ng-click="confirm()">Create Account</button>
+<button class="round_button center" ng-click="confirm()">
+    <span ng-if="editmode">Update Account</span>
+    <span ng-if="!editmode">Create Account</span>
+</button>
 
 </div>

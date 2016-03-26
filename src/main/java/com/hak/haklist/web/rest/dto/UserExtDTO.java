@@ -16,6 +16,8 @@ public class UserExtDTO extends UserDTO {
         userProfile = new UserProfileDTO(user.getUserProfile());
     }
 
+
+
     public UserProfileDTO getUserProfile() {
         return userProfile;
     }

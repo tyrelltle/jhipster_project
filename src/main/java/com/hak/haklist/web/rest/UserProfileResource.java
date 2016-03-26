@@ -1,10 +1,14 @@
 package com.hak.haklist.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.hak.haklist.domain.User;
 import com.hak.haklist.domain.UserProfile;
+import com.hak.haklist.repository.UserRepository;
 import com.hak.haklist.service.UserProfileService;
+import com.hak.haklist.web.rest.dto.UserExtDTO;
 import com.hak.haklist.web.rest.util.HeaderUtil;
 import com.hak.haklist.web.rest.util.PaginationUtil;
+import org.hibernate.Hibernate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -13,6 +17,9 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
@@ -33,6 +40,8 @@ public class UserProfileResource {
     @Inject
     private UserProfileService userProfileService;
 
+    @Inject
+    private UserRepository userRepository;
     /**
      * POST  /userProfiles -> Create a new userProfile.
      */
@@ -69,6 +78,23 @@ public class UserProfileResource {
             .body(result);
     }
 
+
+    /**
+     * PUT  /userProfiles/ext -> Updates an existing userProfile as well as fields in User.
+     */
+    @RequestMapping(value = "/userProfiles/ext",
+        method = RequestMethod.PUT,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<Void> updateUserProfileExt(@RequestBody UserExtDTO userExtDTO) throws URISyntaxException {
+        log.debug("REST request to update UserProfile as well as User: {}", userExtDTO);
+        userProfileService.updateUserInformation(userExtDTO);
+        return ResponseEntity.ok().build();
+    }
+
+
+
+
     /**
      * GET  /userProfiles -> get all the userProfiles.
      */
@@ -104,6 +130,24 @@ public class UserProfileResource {
                 result,
                 HttpStatus.OK))
             .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    /**
+     * GET  /userProfiles/current -> get current user profile
+     */
+    @RequestMapping(value = "/userProfiles/current",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    @Transactional
+    public ResponseEntity<UserExtDTO> getCurrentUserProfile() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        org.springframework.security.core.userdetails.User principalUser =
+            (org.springframework.security.core.userdetails.User)authentication.getPrincipal();
+        User user= userRepository.findOneByLogin(principalUser.getUsername()).get();
+        Hibernate.initialize(user.getUserProfile());
+        UserExtDTO userExtDTO=new UserExtDTO(user);
+        return new ResponseEntity(userExtDTO, HttpStatus.OK);
     }
 
     /**

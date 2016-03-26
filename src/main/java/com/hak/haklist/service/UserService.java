@@ -132,7 +132,6 @@ public class UserService {
         //newUser.setActivationKey(RandomUtil.generateActivationKey());
         authorities.add(authority);
         newUser.setAuthorities(authorities);
-        newUser = userRepository.save(newUser);
 
         UserProfileDTO userProfileDTO = userExtDTO.getUserProfile();
         if (userProfileDTO != null) {
@@ -145,7 +144,9 @@ public class UserService {
             userProfile.setWebsite(userProfileDTO.getPersonalSite());
             userProfile.setUser(newUser);
             userProfileRepository.save(userProfile);
+            newUser.setUserProfile(userProfile);
         }
+        newUser = userRepository.save(newUser);
 
         log.debug("Created Information for User: {}", newUser);
         return newUser;

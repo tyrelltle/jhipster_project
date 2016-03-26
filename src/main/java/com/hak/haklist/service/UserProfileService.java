@@ -2,16 +2,18 @@ package com.hak.haklist.service;
 
 import com.hak.haklist.domain.UserProfile;
 import com.hak.haklist.repository.UserProfileRepository;
+import com.hak.haklist.repository.UserRepository;
+import com.hak.haklist.security.SecurityUtils;
+import com.hak.haklist.web.rest.dto.UserExtDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -27,6 +29,8 @@ public class UserProfileService {
     @Inject
     private UserProfileRepository userProfileRepository;
 
+    @Inject
+    private UserRepository userRepository;
     /**
      * Save a userProfile.
      * @return the persisted entity
@@ -72,6 +76,35 @@ public class UserProfileService {
         UserProfile userProfile = userProfileRepository.findOne(id);
         return userProfile;
     }
+
+    /**
+     *  get one userProfile by user id.
+     *  @return the entity
+     */
+    @Transactional(readOnly = true)
+    public UserProfile findOneByUserId(Long id) {
+        UserProfile userProfile = userProfileRepository.findOneByUserId(id);
+        return userProfile;
+    }
+
+    public void updateUserInformation(UserExtDTO userExtDTO) {
+        userRepository.findOneByLogin(SecurityUtils.getCurrentUser().getUsername()).ifPresent(u -> {
+            u.setFirstName(userExtDTO.getFirstName());
+            u.setLastName(userExtDTO.getLastName());
+            u.setEmail(userExtDTO.getEmail());
+            userRepository.save(u);
+            log.debug("Changed Information for User: {}", u);
+            UserProfile userProfile=userProfileRepository.findOneByUserId(u.getId());
+            userProfile.setCountry(userExtDTO.getUserProfile().getCountry());
+            userProfile.setCompany(userExtDTO.getUserProfile().getCompany());
+            userProfile.setGithub_path(userExtDTO.getUserProfile().getGitHub());
+            userProfile.setLinkedin_path(userExtDTO.getUserProfile().getLinkedIn());
+            userProfile.setTwitter_path(userExtDTO.getUserProfile().getTwitter());
+            userProfileRepository.save(userProfile);
+        });
+
+    }
+
 
     /**
      *  delete the  userProfile by id.

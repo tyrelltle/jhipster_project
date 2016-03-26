@@ -34,7 +34,7 @@ angular.module('haklistUserApp')
         });
 
         $scope.viewprofile=function(){
-            $state.go('signup');
+            $state.go('profile');
         }
 
         $scope.signout=function(){

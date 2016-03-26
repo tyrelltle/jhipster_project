@@ -4,7 +4,7 @@ angular.module('haklistUserApp')
     .controller('SignupController', function ($scope,$state,Auth) {
         $scope.registerAccount={
             langKey:'en',
-            userProfileDto:{
+            userProfile:{
                 country:'ch'
             }
         };

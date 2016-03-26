@@ -26,7 +26,7 @@ angular.module('haklistUserApp')
                 alert('not valid email address!');
                 return;
             }
-            $scope.registerAccount.login=$scope.registerAccount.email.split('@')[0];
+            $scope.registerAccount.login=$scope.registerAccount.email;
             if ($scope.registerAccount.password == undefined ||
                 $scope.registerAccount.password.trim() == '') {
                 alert('Passwords can not be empty!');

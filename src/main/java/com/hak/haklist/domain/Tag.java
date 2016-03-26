@@ -25,15 +25,7 @@ public class Tag implements Serializable {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @JoinTable(name = "user_tag",
-        inverseJoinColumns= {
-            @JoinColumn(name = "user_profiles_id", referencedColumnName = "id")
-        },
-        joinColumns = {
-            @JoinColumn(name = "tags_id", referencedColumnName = "id")
-        }
-    )
-    @ManyToMany()
+    @ManyToMany(fetch=FetchType.LAZY, mappedBy = "tags")
     @JsonIgnore
     private Set<UserProfile> userProfiles = new HashSet<>();
 

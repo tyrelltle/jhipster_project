@@ -4,6 +4,8 @@ import com.hak.haklist.domain.UserProfile;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * A DTO representing a user, with his authorities.
@@ -20,7 +22,7 @@ public class UserProfileDTO {
     private String gitHub;
     private String twitter;
     private String personalSite;
-
+    private List<String> tags;
     public UserProfileDTO() {
     }
 
@@ -32,6 +34,10 @@ public class UserProfileDTO {
             this.gitHub = userProfile.getGithub_path();
             this.twitter = userProfile.getTwitter_path();
             this.personalSite = userProfile.getWebsite();
+            this.tags=userProfile.getTags()==null?null:userProfile.getTags()
+                                                                    .stream()
+                                                                    .map(tag->tag.getName())
+                                                                    .collect(Collectors.toList());
         }
     }
 
@@ -92,6 +98,14 @@ public class UserProfileDTO {
 
     public void setPersonalSite(String personalSite) {
         this.personalSite = personalSite;
+    }
+
+    public List<String> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<String> tags) {
+        this.tags = tags;
     }
 
     @Override

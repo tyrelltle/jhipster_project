@@ -4,8 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * A UserProfile.
@@ -47,10 +48,12 @@ public class UserProfile implements Serializable {
         },
         inverseJoinColumns = {
             @JoinColumn(name = "tags_id", referencedColumnName = "id")
-        }
+        },
+        uniqueConstraints = {@UniqueConstraint(
+            columnNames = {"user_profiles_id", "tags_id"})}
     )
-    @ManyToMany
-    private Collection<Tag> tags;
+    @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER, targetEntity = Tag.class)
+    private Set<Tag> tags=new HashSet<>();
 
     public Long getId() {
         return id;
@@ -116,11 +119,11 @@ public class UserProfile implements Serializable {
         this.user = user;
     }
 
-    public Collection<Tag> getTags() {
+    public Set<Tag> getTags() {
         return tags;
     }
 
-    public void setTags(Collection<Tag> tags) {
+    public void setTags(Set<Tag> tags) {
         this.tags = tags;
     }
 

@@ -44,6 +44,9 @@ public class UserService {
     private UserProfileRepository userProfileRepository;
 
     @Inject
+    private UserProfileService userProfileService;
+
+    @Inject
     private AuthorityRepository authorityRepository;
 
     public Optional<User> activateRegistration(String key) {
@@ -143,7 +146,9 @@ public class UserService {
             userProfile.setTwitter_path(userProfileDTO.getTwitter());
             userProfile.setWebsite(userProfileDTO.getPersonalSite());
             userProfile.setUser(newUser);
+            userProfileService.addUserTag(userProfile,userProfileDTO.getTags(),false);
             userProfileRepository.save(userProfile);
+
             newUser.setUserProfile(userProfile);
         }
         newUser = userRepository.save(newUser);

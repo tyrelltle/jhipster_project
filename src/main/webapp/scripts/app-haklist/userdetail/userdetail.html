@@ -41,17 +41,7 @@ You must provide <b>at least</b> one of the following 4 options
 <br><br>
 You must provide <b>at least</b> one of the following <b>specialties</b>. Maximal four.
 <div class="signup_specialty_box">
-    <span>Angular</span>
-    <span>ReactJs</span>
-    <span>CSS</span>
-    <span>HTML</span>
-    <span>Angular</span>
-    <span>ReactJs</span>
-    <span>CSS</span>
-    <span>HTML</span><span>Angular</span>
-    <span>ReactJs</span>
-    <span>CSS</span>
-    <span>HTML</span>
+    <span ng-repeat="tag in tags" ng-class="tag.selected?'':'unselected'" ng-click="tag.selected=!tag.selected">{{tag.name}}</span>
 </div>
 <br><br><br>
 

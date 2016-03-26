@@ -145,10 +145,15 @@ code {
     background-color: white;
     padding: 23px;
     margin-top: 13px;
+}
 
+.unselected{
+    border: 1px solid gray !important;
+    color: gray !important;
 }
 
 .signup_specialty_box > span{
+    cursor: pointer;
     border: solid 1.5px #2da84c;
     color: #2da84c;
     margin: 3px;

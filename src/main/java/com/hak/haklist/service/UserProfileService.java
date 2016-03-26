@@ -1,11 +1,14 @@
 package com.hak.haklist.service;
 
+import com.hak.haklist.domain.Tag;
 import com.hak.haklist.domain.UserProfile;
+import com.hak.haklist.repository.TagRepository;
 import com.hak.haklist.repository.UserProfileRepository;
 import com.hak.haklist.repository.UserRepository;
 import com.hak.haklist.security.SecurityUtils;
 import com.hak.haklist.web.rest.dto.PublicProfileDTP;
 import com.hak.haklist.web.rest.dto.UserExtDTO;
+import org.hibernate.Hibernate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -15,6 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -33,6 +37,9 @@ public class UserProfileService {
 
     @Inject
     private UserRepository userRepository;
+
+    @Inject
+    private TagRepository tagRepository;
     /**
      * Save a userProfile.
      * @return the persisted entity
@@ -120,11 +127,25 @@ public class UserProfileService {
             userProfile.setGithub_path(userExtDTO.getUserProfile().getGitHub());
             userProfile.setLinkedin_path(userExtDTO.getUserProfile().getLinkedIn());
             userProfile.setTwitter_path(userExtDTO.getUserProfile().getTwitter());
-            userProfileRepository.save(userProfile);
             log.debug("Changed Information for UserProfile: {}", userProfile);
-
+            addUserTag(userProfile,userExtDTO.getUserProfile().getTags(),false);
+            userProfileRepository.save(userProfile);
         });
+    }
 
+    @Transactional
+    public void addUserTag(UserProfile profile,List<String> tags,boolean persist){
+
+        profile.setTags(new HashSet<>());
+        if(tags!=null)
+            tags.forEach(tagname->{
+                Tag tag=tagRepository.findOneByName(tagname);
+                Hibernate.initialize(tag.getUserProfiles());
+                profile.getTags().add(tag);
+                tag.getUserProfiles().add(profile);
+            });
+        if(persist)
+            userProfileRepository.save(profile);
     }
 
 

@@ -22,10 +22,7 @@
 
                     <h6>SPECIALTY</h6>
                     <div class="specialty_box">
-                        <span>Angular</span>
-                        <span>ReactJs</span>
-                        <span>CSS</span>
-                        <span>HTML</span>
+                        <span ng-repeat="tag in userProfiles[$parent.$index+i].tags">{{tag}}</span>
                     </div>
                 </div>
             </div>

@@ -1,13 +1,14 @@
 'use strict';
 
 angular.module('haklistUserApp')
-    .controller('SignupController', function ($scope,$state,Auth,Country) {
+    .controller('SignupController', function ($scope,$state,Auth,Country,Tag) {
         $scope.registerAccount={
             langKey:'en',
             userProfile:{
                 country:'CH'
             }
         };
+        $scope.tags=[];
         $scope.selectCountry={};
 
 
@@ -16,11 +17,28 @@ angular.module('haklistUserApp')
             $scope.countries=result;
         });
 
+
+        Tag.query({}, function (returnTags) {
+            returnTags.forEach(function(tag){
+                $scope.tags.push({name:tag.name,selected:false});
+            });
+        });
+
+        function collectSelectedTags(){
+            var ret=[];
+            for(var i=0;i<$scope.tags.length;i++){
+                if($scope.tags[i].selected)
+                    ret.push($scope.tags[i].name);
+            }
+            return ret;
+        }
+
         $scope.country_select=function(index){
             event.preventDefault();
             $scope.selectCountry=$scope.countries[index];
         }
         $scope.confirm = function () {
+            $scope.registerAccount.userProfile.tags=collectSelectedTags();
             $scope.registerAccount.userProfile.country=$scope.selectCountry?$scope.selectCountry.country_code:"CH";
             if($scope.registerAccount.email.indexOf('@')<0){
                 alert('not valid email address!');

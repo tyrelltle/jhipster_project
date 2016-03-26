@@ -2,19 +2,19 @@
     <div class="page-header">
         <h2>Discover Software Engineer from Everywhere</h2>
     </div>
-    <div class="row">
+    <div class="row" ng-repeat="profile in userProfiles">
         <div class="col-md-4">
             <div class="card mycard">
                 <img class="card-img-top"
                      src="http://www.gravatar.com/avatar/00000000000000000000000000000000?d=monsterid&amp;f=y"
                      alt="Card image cap">
                 <div class="card-block">
-                    <h3 class="card-title">User Name</h3>
-                    <h6 class="card-title">Worked at XXX</h6>
+                    <h3 class="card-title">{{profile.firstName}} {{profile.lastName}}</h3>
+                    <h6 class="card-title">Worked at {{profile.company}}</h6>
                     <div style="margin-top: 30px;">
-                        <h6><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Vancouver</h6>
-                        <h6><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> xxxxxx@xxxx.com</h6>
-                        <h6><span class="glyphicon glyphicon-link" aria-hidden="true"></span> http://hellworld.com</h6>
+                        <h6><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> {{profile.country}}</h6>
+                        <h6><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> {{profile.email}}</h6>
+                        <h6><span class="glyphicon glyphicon-link" aria-hidden="true"></span>{{profile.website}}</h6>
                     </div>
 
                     <hr align="CENTER" style="border-top: 1px solid #D2CBCB;">
@@ -30,226 +30,9 @@
             </div>
         </div><!--end one card-->
 
-        <div class="col-md-4">
-            <div class="card mycard">
-                <img class="card-img-top"
-                     src="http://www.gravatar.com/avatar/00000000000000000000000000000000?d=monsterid&amp;f=y"
-                     alt="Card image cap">
-                <div class="card-block">
-                    <h3 class="card-title">User Name</h3>
-                    <h6 class="card-title">Worked at XXX</h6>
-                    <div style="margin-top: 30px;">
-                        <h6><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Vancouver</h6>
-                        <h6><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> xxxxxx@xxxx.com</h6>
-                        <h6><span class="glyphicon glyphicon-link" aria-hidden="true"></span> http://hellworld.com</h6>
-                    </div>
 
-                    <hr align="CENTER" style="border-top: 1px solid #D2CBCB;">
-
-                    <h6>SPECIALTY</h6>
-                    <div class="specialty_box">
-                        <span>Angular</span>
-                        <span>ReactJs</span>
-                        <span>CSS</span>
-                        <span>HTML</span>
-                    </div>
-                </div>
-            </div>
-        </div><!--end one card-->
-
-        <div class="col-md-4">
-            <div class="card mycard">
-                <img class="card-img-top"
-                     src="http://www.gravatar.com/avatar/00000000000000000000000000000000?d=monsterid&amp;f=y"
-                     alt="Card image cap">
-                <div class="card-block">
-                    <h3 class="card-title">User Name</h3>
-                    <h6 class="card-title">Worked at XXX</h6>
-                    <div style="margin-top: 30px;">
-                        <h6><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Vancouver</h6>
-                        <h6><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> xxxxxx@xxxx.com</h6>
-                        <h6><span class="glyphicon glyphicon-link" aria-hidden="true"></span> http://hellworld.com</h6>
-                    </div>
-
-                    <hr align="CENTER" style="border-top: 1px solid #D2CBCB;">
-
-                    <h6>SPECIALTY</h6>
-                    <div class="specialty_box">
-                        <span>Angular</span>
-                        <span>ReactJs</span>
-                        <span>CSS</span>
-                        <span>HTML</span>
-                    </div>
-                </div>
-            </div>
-        </div><!--end one card-->
     </div><!--end one card row-->
 
-    <div class="row">
-        <div class="col-md-4">
-            <div class="card mycard">
-                <img class="card-img-top"
-                     src="http://www.gravatar.com/avatar/00000000000000000000000000000000?d=monsterid&amp;f=y"
-                     alt="Card image cap">
-                <div class="card-block">
-                    <h3 class="card-title">User Name</h3>
-                    <h6 class="card-title">Worked at XXX</h6>
-                    <div style="margin-top: 30px;">
-                        <h6><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Vancouver</h6>
-                        <h6><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> xxxxxx@xxxx.com</h6>
-                        <h6><span class="glyphicon glyphicon-link" aria-hidden="true"></span> http://hellworld.com</h6>
-                    </div>
-
-                    <hr align="CENTER" style="border-top: 1px solid #D2CBCB;">
-
-                    <h6>SPECIALTY</h6>
-                    <div class="specialty_box">
-                        <span>Angular</span>
-                        <span>ReactJs</span>
-                        <span>CSS</span>
-                        <span>HTML</span>
-                    </div>
-                </div>
-            </div>
-        </div><!--end one card-->
-
-        <div class="col-md-4">
-            <div class="card mycard">
-                <img class="card-img-top"
-                     src="http://www.gravatar.com/avatar/00000000000000000000000000000000?d=monsterid&amp;f=y"
-                     alt="Card image cap">
-                <div class="card-block">
-                    <h3 class="card-title">User Name</h3>
-                    <h6 class="card-title">Worked at XXX</h6>
-                    <div style="margin-top: 30px;">
-                        <h6><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Vancouver</h6>
-                        <h6><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> xxxxxx@xxxx.com</h6>
-                        <h6><span class="glyphicon glyphicon-link" aria-hidden="true"></span> http://hellworld.com</h6>
-                    </div>
-
-                    <hr align="CENTER" style="border-top: 1px solid #D2CBCB;">
-
-                    <h6>SPECIALTY</h6>
-                    <div class="specialty_box">
-                        <span>Angular</span>
-                        <span>ReactJs</span>
-                        <span>CSS</span>
-                        <span>HTML</span>
-                    </div>
-                </div>
-            </div>
-        </div><!--end one card-->
-
-        <div class="col-md-4">
-            <div class="card mycard">
-                <img class="card-img-top"
-                     src="http://www.gravatar.com/avatar/00000000000000000000000000000000?d=monsterid&amp;f=y"
-                     alt="Card image cap">
-                <div class="card-block">
-                    <h3 class="card-title">User Name</h3>
-                    <h6 class="card-title">Worked at XXX</h6>
-                    <div style="margin-top: 30px;">
-                        <h6><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Vancouver</h6>
-                        <h6><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> xxxxxx@xxxx.com</h6>
-                        <h6><span class="glyphicon glyphicon-link" aria-hidden="true"></span> http://hellworld.com</h6>
-                    </div>
-
-                    <hr align="CENTER" style="border-top: 1px solid #D2CBCB;">
-
-                    <h6>SPECIALTY</h6>
-                    <div class="specialty_box">
-                        <span>Angular</span>
-                        <span>ReactJs</span>
-                        <span>CSS</span>
-                        <span>HTML</span>
-                    </div>
-                </div>
-            </div>
-        </div><!--end one card-->
-    </div><!--end one card row-->
-
-    <div class="row">
-        <div class="col-md-4">
-            <div class="card mycard">
-                <img class="card-img-top"
-                     src="http://www.gravatar.com/avatar/00000000000000000000000000000000?d=monsterid&amp;f=y"
-                     alt="Card image cap">
-                <div class="card-block">
-                    <h3 class="card-title">User Name</h3>
-                    <h6 class="card-title">Worked at XXX</h6>
-                    <div style="margin-top: 30px;">
-                        <h6><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Vancouver</h6>
-                        <h6><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> xxxxxx@xxxx.com</h6>
-                        <h6><span class="glyphicon glyphicon-link" aria-hidden="true"></span> http://hellworld.com</h6>
-                    </div>
-
-                    <hr align="CENTER" style="border-top: 1px solid #D2CBCB;">
-
-                    <h6>SPECIALTY</h6>
-                    <div class="specialty_box">
-                        <span>Angular</span>
-                        <span>ReactJs</span>
-                        <span>CSS</span>
-                        <span>HTML</span>
-                    </div>
-                </div>
-            </div>
-        </div><!--end one card-->
-
-        <div class="col-md-4">
-            <div class="card mycard">
-                <img class="card-img-top"
-                     src="http://www.gravatar.com/avatar/00000000000000000000000000000000?d=monsterid&amp;f=y"
-                     alt="Card image cap">
-                <div class="card-block">
-                    <h3 class="card-title">User Name</h3>
-                    <h6 class="card-title">Worked at XXX</h6>
-                    <div style="margin-top: 30px;">
-                        <h6><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Vancouver</h6>
-                        <h6><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> xxxxxx@xxxx.com</h6>
-                        <h6><span class="glyphicon glyphicon-link" aria-hidden="true"></span> http://hellworld.com</h6>
-                    </div>
-
-                    <hr align="CENTER" style="border-top: 1px solid #D2CBCB;">
-
-                    <h6>SPECIALTY</h6>
-                    <div class="specialty_box">
-                        <span>Angular</span>
-                        <span>ReactJs</span>
-                        <span>CSS</span>
-                        <span>HTML</span>
-                    </div>
-                </div>
-            </div>
-        </div><!--end one card-->
-
-        <div class="col-md-4">
-            <div class="card mycard">
-                <img class="card-img-top"
-                     src="http://www.gravatar.com/avatar/00000000000000000000000000000000?d=monsterid&amp;f=y"
-                     alt="Card image cap">
-                <div class="card-block">
-                    <h3 class="card-title">User Name</h3>
-                    <h6 class="card-title">Worked at XXX</h6>
-                    <div style="margin-top: 30px;">
-                        <h6><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Vancouver</h6>
-                        <h6><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> xxxxxx@xxxx.com</h6>
-                        <h6><span class="glyphicon glyphicon-link" aria-hidden="true"></span> http://hellworld.com</h6>
-                    </div>
-
-                    <hr align="CENTER" style="border-top: 1px solid #D2CBCB;">
-
-                    <h6>SPECIALTY</h6>
-                    <div class="specialty_box">
-                        <span>Angular</span>
-                        <span>ReactJs</span>
-                        <span>CSS</span>
-                        <span>HTML</span>
-                    </div>
-                </div>
-            </div>
-        </div><!--end one card-->
-    </div><!--end one card row-->
 
     <div class="center paging">
         <button class="round_button leftbtn">Newer Posts</button><button class="round_button rightbtn">Older Posts</button>

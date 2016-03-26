@@ -5,6 +5,7 @@ import com.hak.haklist.domain.User;
 import com.hak.haklist.domain.UserProfile;
 import com.hak.haklist.repository.UserRepository;
 import com.hak.haklist.service.UserProfileService;
+import com.hak.haklist.web.rest.dto.PublicProfileDTP;
 import com.hak.haklist.web.rest.dto.UserExtDTO;
 import com.hak.haklist.web.rest.util.HeaderUtil;
 import com.hak.haklist.web.rest.util.PaginationUtil;
@@ -112,6 +113,22 @@ public class UserProfileResource {
         log.debug("REST request to get a page of UserProfiles");
         Page<UserProfile> page = userProfileService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/userProfiles");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
+
+    /**
+     * GET  /userProfiles/public -> get all the userProfiles with user information for public.
+     */
+    @RequestMapping(value = "/userProfiles/public",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<List<PublicProfileDTP>> getAllUserProfilesExt(Pageable pageable, @RequestParam(required = false) String filter)
+        throws URISyntaxException {
+
+        Page<PublicProfileDTP> page = userProfileService.findAllExt(pageable);
+
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/userProfiles/ext");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 

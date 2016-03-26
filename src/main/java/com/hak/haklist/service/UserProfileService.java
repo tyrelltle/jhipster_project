@@ -4,10 +4,12 @@ import com.hak.haklist.domain.UserProfile;
 import com.hak.haklist.repository.UserProfileRepository;
 import com.hak.haklist.repository.UserRepository;
 import com.hak.haklist.security.SecurityUtils;
+import com.hak.haklist.web.rest.dto.PublicProfileDTP;
 import com.hak.haklist.web.rest.dto.UserExtDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -52,6 +54,19 @@ public class UserProfileService {
         return result;
     }
 
+    /**
+     *  get all the userProfiles with some User entity information.
+     *  @return the list of entities
+     */
+    @Transactional(readOnly = true)
+    public Page<PublicProfileDTP> findAllExt(Pageable pageable) {
+        log.debug("Request to get all UserProfiles");
+        Page<UserProfile> result = userProfileRepository.findAll(pageable);
+        Page<PublicProfileDTP> resultext=new PageImpl<>(PublicProfileDTP.toList(result.getContent()),
+                                                        pageable,
+                                                        result.getTotalElements());
+        return resultext;
+    }
 
     /**
      *  get all the userProfiles where User is null.
@@ -87,6 +102,11 @@ public class UserProfileService {
         return userProfile;
     }
 
+    /**
+     * Update user and profile information
+     * @param userExtDTO DTO wrapping both profile and user information
+     */
+    @Transactional
     public void updateUserInformation(UserExtDTO userExtDTO) {
         userRepository.findOneByLogin(SecurityUtils.getCurrentUser().getUsername()).ifPresent(u -> {
             u.setFirstName(userExtDTO.getFirstName());

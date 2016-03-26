@@ -4,6 +4,7 @@ angular.module('haklistApp')
     .factory('UserProfile', function ($resource) {
         return $resource('api/userProfiles/:id', {}, {
             'query': { method: 'GET', isArray: true},
+            'queryExt': { method: 'GET', isArray: true,url:'api/userProfiles/public'},
             'get': {
                 method: 'GET',
                 transformResponse: function (data) {

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('haklistApp')
-    .factory('Country', function ($resource, DateUtils) {
+    .factory('Country', function ($resource) {
         return $resource('api/country/:id', {}, {
             'query': {method: 'GET', isArray: true},
             'get': {

@@ -9,7 +9,7 @@ angular.module('haklistUserApp')
         UserProfile.current({},function(result){
             $scope.registerAccount=result;
             updateTags(result.userProfile.tags);
-            Country.query({}, function (result) {
+            Country.list({}, function (result) {
                 $scope.countries=result;
                 $scope.countries.forEach(function(country){
                     if(country.country_code==$scope.registerAccount.userProfile.country)

@@ -13,7 +13,7 @@ angular.module('haklistUserApp')
 
 
         //TODO: country logics can be encapsulated in a dedicated Directive, do it after phase one
-        Country.query({}, function (result) {
+        Country.list({}, function (result) {
             $scope.countries=result;
         });
 

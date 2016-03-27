@@ -11,6 +11,11 @@ angular.module('haklistApp')
                     return data;
                 }
             },
+            'list':{
+                method: 'GET',
+                isArray:true,
+                url:'api/country/list'
+            },
             'update': {method: 'PUT'}
         });
     });

@@ -29,7 +29,7 @@ You must provide <b>at least</b> one of the following 4 options
     <input type="text" class="form-control" ng-model="selectCountry.name" placeholder="Choose a country" aria-label="Text input with segmented button dropdown">
     <div class="input-group-btn">
         <button type="button" class="btn btn-default dropdown-toggle form-control" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="caret"></span> <span class="sr-only">Toggle Dropdown</span></button>
-        <ul class="dropdown-menu dropdown-menu-right">
+        <ul class="dropdown-menu dropdown-menu-right scrollable-menu">
             <li ng-repeat="country in countries"><a href="#" ng-click="country_select($index)">{{country.name}}</a></li>
         </ul>
     </div>

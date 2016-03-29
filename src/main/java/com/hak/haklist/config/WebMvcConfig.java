@@ -26,5 +26,13 @@ public class WebMvcConfig {
             }
         };
     }
+/*
+    @Bean
+    public MultipartResolver getMultipartResolver() {
+        CommonsMultipartResolver resolver = new CommonsMultipartResolver();
+        resolver.setMaxUploadSize(5 * 1024 * 1024); // 5MB
+
+        return resolver;
+    }*/
 
 }

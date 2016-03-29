@@ -179,4 +179,7 @@ public class UserProfileResource {
         userProfileService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("userProfile", id.toString())).build();
     }
+
+
+
 }

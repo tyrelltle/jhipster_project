@@ -1,7 +1,10 @@
 package com.hak.haklist.service;
 
+import com.hak.haklist.domain.ProfilePicture;
 import com.hak.haklist.domain.Tag;
+import com.hak.haklist.domain.User;
 import com.hak.haklist.domain.UserProfile;
+import com.hak.haklist.repository.ProfilePictureRepository;
 import com.hak.haklist.repository.TagRepository;
 import com.hak.haklist.repository.UserProfileRepository;
 import com.hak.haklist.repository.UserRepository;
@@ -40,6 +43,11 @@ public class UserProfileService {
 
     @Inject
     private TagRepository tagRepository;
+
+
+    @Inject
+    private ProfilePictureRepository profilePictureRepository;
+
     /**
      * Save a userProfile.
      * @return the persisted entity
@@ -109,6 +117,49 @@ public class UserProfileService {
         return userProfile;
     }
 
+
+    /**
+     * sets user profile picture
+     * @param id    user id associated with the userProfile
+     * @param blob  byte array of the picture file
+     * @param type  MIME type of the picture file
+     */
+    @Transactional
+    public void setProfilePictureByUserId(Long id,byte[] blob,String type){
+        if(blob==null || blob.length==0) {
+            log.error("Requested to set empty picture data to profile for user id : {}", id);
+            return;
+        }
+
+        /**
+         * fetch lazy loaded profile picture
+         */
+        UserProfile userProfile=userProfileRepository.findOneByUserId(id);
+        Hibernate.initialize(userProfile.getProfilePicture());
+
+        /**
+         * initialize profilePicture entity
+         */
+        ProfilePicture profilePicture=new ProfilePicture();
+        profilePicture.setImage_data(blob);
+        profilePicture.setImage_type(type);
+        profilePicture.setSize(blob.length);
+
+        /**
+         * associal picture and profile with each other
+         */
+        profilePicture.setUserProfile(userProfile);
+        userProfile.setProfilePicture(profilePicture);
+
+        /**
+         * persist
+         */
+        profilePictureRepository.save(profilePicture);
+        userProfileRepository.save(userProfile);
+
+    }
+
+
     /**
      * Update user and profile information
      * @param userExtDTO DTO wrapping both profile and user information
@@ -155,5 +206,13 @@ public class UserProfileService {
     public void delete(Long id) {
         log.debug("Request to delete UserProfile : {}", id);
         userProfileRepository.delete(id);
+    }
+
+    @Transactional
+    public ProfilePicture getProfilePictureByUserLogin(String login) {
+        User user=userRepository.findOneByLogin(login).get();
+        Hibernate.initialize(user.getUserProfile());
+        Hibernate.initialize(user.getUserProfile().getProfilePicture());
+        return user.getUserProfile().getProfilePicture();
     }
 }

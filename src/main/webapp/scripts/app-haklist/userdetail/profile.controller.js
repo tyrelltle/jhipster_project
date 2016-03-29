@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('haklistUserApp')
-    .controller('ProfileController', function ($scope,$state,Principal,UserProfile,Country,Tag) {
+    .controller('ProfileController', function ($scope,$state,Principal,UserProfile,Country,Tag,ProfilePhoto) {
 
         $scope.registerAccount={};
         $scope.editmode=true;
@@ -64,6 +64,16 @@ angular.module('haklistUserApp')
                 alert(error);
             });
 
+        }
+
+        $scope.upload=function(){
+            var file = document.getElementById("fileinput").files[0];
+            ProfilePhoto.upload(file,function(){
+                var img=document.getElementById("imagedisplay");
+                Principal.identity().then(function(account) {
+                    img.setAttribute("src","api/userProfiles/login/"+account.login+"/photo");
+                });
+            });
         }
 
 

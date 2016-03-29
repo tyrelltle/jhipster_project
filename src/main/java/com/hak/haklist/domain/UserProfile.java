@@ -42,6 +42,13 @@ public class UserProfile implements Serializable {
     @JsonIgnore
     private User user;
 
+
+    @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY, targetEntity = ProfilePicture.class)
+    @JoinColumn(name = "profile_picture_id")
+    @JsonIgnore
+    private ProfilePicture profilePicture;
+
+
     @JoinTable(name = "user_tag",
         joinColumns = {
             @JoinColumn(name = "user_profiles_id", referencedColumnName = "id")
@@ -54,6 +61,10 @@ public class UserProfile implements Serializable {
     )
     @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER, targetEntity = Tag.class)
     private Set<Tag> tags=new HashSet<>();
+
+
+
+
 
     public Long getId() {
         return id;
@@ -121,6 +132,15 @@ public class UserProfile implements Serializable {
 
     public Set<Tag> getTags() {
         return tags;
+    }
+
+
+    public ProfilePicture getProfilePicture() {
+        return profilePicture;
+    }
+
+    public void setProfilePicture(ProfilePicture profilePicture) {
+        this.profilePicture = profilePicture;
     }
 
     public void setTags(Set<Tag> tags) {

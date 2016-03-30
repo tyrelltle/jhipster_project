@@ -206,7 +206,10 @@ user profile upload overlay effect
     top: -108px;
     opacity: 1;
 }
-
+.uploadoverlay > input {
+    width: 80px;
+    height: 80px;
+}
 .uploadoverlay-bg{
 
     background-image: url("/assets/images/upload.png");
@@ -221,4 +224,8 @@ user profile upload overlay effect
     width:80px;
     height:80px;
     border-radius:10px;
+}
+
+.imgitem{
+    margin-bottom: -74px;
 }

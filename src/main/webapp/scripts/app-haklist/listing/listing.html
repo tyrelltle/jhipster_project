@@ -7,7 +7,7 @@
         <div class="col-md-4" ng-repeat="i in getProfileListNumArr($index)" >
             <div class="card mycard" >
                 <img class="card-img-top"
-                     src="http://www.gravatar.com/avatar/00000000000000000000000000000000?d=monsterid&amp;f=y"
+                     src="api/userProfiles/login/{{userProfiles[$parent.$index+i].login}}/photo"
                      alt="Card image cap">
                 <div class="card-block">
                     <h3 class="card-title">{{userProfiles[$parent.$index+i].firstName}} {{userProfiles[$parent.$index+i].lastName}}</h3>

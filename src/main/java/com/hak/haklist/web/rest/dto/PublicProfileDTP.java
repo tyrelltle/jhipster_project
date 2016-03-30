@@ -14,12 +14,13 @@ public class PublicProfileDTP extends UserProfileDTO{
     String firstName;
     String lastName;
     String email;
-
+    String login;
     public PublicProfileDTP(UserProfile p){
         super(p);
         this.firstName=p.getUser().getFirstName();
         this.lastName=p.getUser().getLastName();
         this.email=p.getUser().getEmail();
+        this.login=p.getUser().getLogin();
     }
 
     public static List<PublicProfileDTP> toList(List<UserProfile> userProfiles){
@@ -50,6 +51,14 @@ public class PublicProfileDTP extends UserProfileDTO{
         this.email = email;
     }
 
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
     @Override
     public String toString() {
         return "PublicProfileDTO{" +
@@ -61,6 +70,7 @@ public class PublicProfileDTP extends UserProfileDTO{
             ", firstName='" + firstName + '\'' +
             ", lastName='" + lastName + '\'' +
             ", email='" + email + '\'' +
+            ", login='" + login + '\'' +
             ", personalSite=" + getPersonalSite() +
             "}";
     }

@@ -6,6 +6,7 @@ import com.hak.haklist.domain.User;
 import com.hak.haklist.repository.UserRepository;
 import com.hak.haklist.security.SecurityUtils;
 import com.hak.haklist.service.UserProfileService;
+import com.hak.haklist.service.util.ResourceLoader;
 import com.hak.haklist.web.rest.util.ImageUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,6 +40,9 @@ public class UserProfilePhotoResource {
     private final Logger log = LoggerFactory.getLogger(UserProfilePhotoResource.class);
 
     @Inject
+    private ResourceLoader resourceLoader;
+
+    @Inject
     private UserProfileService userProfileService;
 
     @Inject
@@ -51,8 +55,15 @@ public class UserProfilePhotoResource {
         ProfilePicture picture = userProfileService.getProfilePictureByUserLogin(login);
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.IMAGE_JPEG);
-        headers.setContentLength((long) picture.getSize());
-        return new HttpEntity<byte[]>(picture.getImage_data(), headers);
+        byte[] ret;
+        if(picture==null){
+            ret= resourceLoader.getFile("images/defaul_avatar.png");
+            headers.setContentLength(ret.length);
+        }else{
+            headers.setContentLength((long) picture.getSize());
+            ret=picture.getImage_data();
+        }
+        return new HttpEntity<>(ret, headers);
     }
 
 

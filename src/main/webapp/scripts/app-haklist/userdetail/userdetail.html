@@ -1,18 +1,22 @@
 <div style="width:500px !important;" class="center">
 
 <div class="row">
-    <div class="col-md-6">
-        <input type="file" id="fileinput" accept="image/*" name="file"/>
-        <img id="imagedisplay"/>
-        <input type="button" ng-click="upload()"/>
-        <input type="text" class="form-control" placeholder="First Name" aria-describedby="sizing-addon2" ng-model="registerAccount.firstName">
+    <div class="col-md-3 imgitem">
+
+        <div class="fileUpload btn btn-primary uploadoverlay-bg">
+            <input type="file" class="upload" id="fileinput2" accept="image/*" name="file"/>
+        </div>
+
+        <div class="fileUpload btn btn-primary uploadoverlay" style='background-image: url("{{picturesrc}}")'>
+            <input type="file" class="upload" id="fileinput" accept="image/*" name="file" onchange="angular.element(this).scope().upload()" />
+        </div>
     </div>
 
-    <div class="col-md-6">
+    <div class="col-md-9">
         <input type="text" class="form-control" placeholder="Last Name" aria-describedby="sizing-addon2" ng-model="registerAccount.lastName">
+        <input type="text" class="form-control" placeholder="First Name" aria-describedby="sizing-addon2" ng-model="registerAccount.firstName">
     </div>
 </div>
-<br><br>
 
 You must provide <b>at least</b> one of the following 4 options
 <input type="text" class="form-control" placeholder="E.g: https://linkedin.com/in/haklist" aria-describedby="sizing-addon2"  ng-model="registerAccount.userProfile.linkedIn">

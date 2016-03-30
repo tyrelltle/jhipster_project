@@ -212,6 +212,8 @@ public class UserProfileService {
     public ProfilePicture getProfilePictureByUserLogin(String login) {
         User user=userRepository.findOneByLogin(login).get();
         Hibernate.initialize(user.getUserProfile());
+        if(user.getUserProfile()==null)
+            return null;
         Hibernate.initialize(user.getUserProfile().getProfilePicture());
         return user.getUserProfile().getProfilePicture();
     }

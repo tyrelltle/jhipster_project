@@ -171,3 +171,54 @@ code {
     max-height: 400px;
     overflow-x: hidden;
 }
+
+
+/**
+file upload button styling
+**/
+.fileUpload {
+    position: relative;
+    overflow: hidden;
+    margin: 14px;
+    width: 80px;
+    height: 80px;
+    background-size: 80px 80px;
+}
+.fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+
+
+/**
+user profile upload overlay effect
+**/
+
+.uploadoverlay{
+    position: relative;
+    top: -108px;
+    opacity: 1;
+}
+
+.uploadoverlay-bg{
+
+    background-image: url("/assets/images/upload.png");
+    opacity: 1;
+}
+
+.uploadoverlay:hover{
+    opacity:0.5;
+}
+
+.card-img-top{
+    width:80px;
+    height:80px;
+    border-radius:10px;
+}

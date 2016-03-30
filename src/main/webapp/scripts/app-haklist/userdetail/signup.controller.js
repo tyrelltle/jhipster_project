@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('haklistUserApp')
-    .controller('SignupController', function ($scope,$state,Auth,Country,Tag) {
+    .controller('SignupController', function ($scope,$state,Auth,Country,Tag,Principal,ProfilePhoto) {
         $scope.registerAccount={
             langKey:'en',
             userProfile:{
@@ -10,7 +10,12 @@ angular.module('haklistUserApp')
         };
         $scope.tags=[];
         $scope.selectCountry={};
+        function restImgSrc() {
+            $scope.picturesrc = "api/userProfiles/login/dummy/photo?" + new Date().toISOString();
+        }
 
+        //restImgSrc();
+        $scope.picturesrc="/assets/images/defaul_avatar.png";
 
         //TODO: country logics can be encapsulated in a dedicated Directive, do it after phase one
         Country.list({}, function (result) {
@@ -57,6 +62,12 @@ angular.module('haklistUserApp')
                 });
             }
         };
+        $scope.upload=function(){
+            var file = document.getElementById("fileinput").files[0];
+            ProfilePhoto.upload(file,function(){
+                restImgSrc();
+            });
+        }
 
     });
 

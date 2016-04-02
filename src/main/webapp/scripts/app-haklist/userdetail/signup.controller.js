@@ -10,11 +10,8 @@ angular.module('haklistUserApp')
         };
         $scope.tags=[];
         $scope.selectCountry={};
-        function restImgSrc() {
-            $scope.picturesrc = "api/userProfiles/login/dummy/photo?" + new Date().toISOString();
-        }
 
-        //restImgSrc();
+
         $scope.picturesrc="/assets/images/defaul_avatar.png";
 
         //TODO: country logics can be encapsulated in a dedicated Directive, do it after phase one
@@ -62,17 +59,32 @@ angular.module('haklistUserApp')
                 return;
 
             Auth.createAccountExt($scope.registerAccount).then(function () {
-                alert('Account Created!');
+
+                Auth.login({
+                    username: $scope.registerAccount.login,
+                    password: $scope.registerAccount.password
+                }).then(function () {
+                    if($scope.file){
+                        ProfilePhoto.upload($scope.file);
+                    }
+                    $state.go('home');
+                });
+
             }).catch(function (response) {
                 alert(response.data);
             });
 
         };
         $scope.upload=function(){
-            var file = document.getElementById("fileinput").files[0];
-            ProfilePhoto.upload(file,function(){
-                restImgSrc();
-            });
+            $scope.file=document.getElementById("fileinput").files[0];
+            var reader=new FileReader();
+            reader.onload=function(e){
+                $scope.$apply(function () {
+                    $scope.picturesrc = e.target.result;
+                });
+            }
+            reader.readAsDataURL($scope.file);
+
         }
 
     });

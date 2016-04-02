@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('haklistUserApp')
-    .controller('ProfileController', function ($scope,$state,Principal,UserProfile,Country,Tag,ProfilePhoto) {
-
+    .controller('ProfileController', function ($scope,$state,Principal,UserProfile,Country,Tag,ProfilePhoto,ProfileFormRule) {
+        $scope.formrule={};
         $scope.registerAccount={};
         $scope.editmode=true;
         $scope.tags=[];
@@ -62,9 +62,17 @@ angular.module('haklistUserApp')
             $scope.selectCountry=$scope.countries[index];
         }
 
-        $scope.confirm=function(){
+        $scope.confirm=function(valid){
+            $scope.submitted=true;
+            if(!valid)
+                return;
             $scope.registerAccount.userProfile.tags=collectSelectedTags();
             $scope.registerAccount.userProfile.country=$scope.selectCountry?$scope.selectCountry.country_code:"CH";
+            var additionalRule=ProfileFormRule.validate($scope.registerAccount);
+            $scope.formrule=additionalRule.result;
+            if(!additionalRule.pass)
+                return;
+
             UserProfile.updateExt($scope.registerAccount,
             function(data) {
                 alert('Successfully Updated Your Profile!');

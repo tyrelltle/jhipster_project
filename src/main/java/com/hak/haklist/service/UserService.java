@@ -229,9 +229,14 @@ public class UserService {
 
     @Transactional(readOnly = true)
     public User getUserWithAuthorities() {
-        User user = userRepository.findOneByLogin(SecurityUtils.getCurrentUser().getUsername()).get();
-        user.getAuthorities().size(); // eagerly load the association
-        return user;
+        try {
+            User user = userRepository.findOneByLogin(SecurityUtils.getCurrentUser().getUsername()).get();
+            user.getAuthorities().size(); // eagerly load the association
+            return user;
+        }catch (Exception e){
+            log.error("UserService.getUserWithAuthoities got error "+e.getMessage());
+            return null;
+        }
     }
 
     /**

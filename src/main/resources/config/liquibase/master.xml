@@ -4,26 +4,18 @@
     xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
-<!--
-    <include file="classpath:config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
--->
-    <include file="classpath:config/liquibase/changelog/20160324062539_added_entity_Tag.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/20160324042314_added_entity_UserProfile.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/20160324004225_changelog.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/20160324205836_changelog.xml" relativeToChangelogFile="false"/>
-    <!--<include file="classpath:config/liquibase/changelog/20160326042515_added_entity_Country.xml"
-             relativeToChangelogFile="false"/>-->
-    <include file="classpath:config/liquibase/changelog/20160326140325_changelog.xml"
-             relativeToChangelogFile="false"/>
-
-    <include file="classpath:config/liquibase/changelog/20160328235316_changelog.xml"
-             relativeToChangelogFile="false"/>
 
 
-
-
-
-    <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <changeSet author="sophiaweng (generated)" id="1459026247437-1">
+        <loadData
+            file="config/liquibase/tag.csv"
+            tableName="tag"/>
+    </changeSet>
+    <changeSet id="20160326042515" author="jhipster">
+        <loadData
+            file="config/liquibase/countries.csv"
+            tableName="country"/>
+    </changeSet>
 
 
 </databaseChangeLog>

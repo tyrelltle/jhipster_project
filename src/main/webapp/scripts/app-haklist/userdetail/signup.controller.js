@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('haklistUserApp')
-    .controller('SignupController', function ($scope,$state,Auth,Country,Tag,Principal,ProfilePhoto) {
+    .controller('SignupController', function ($scope,$state,Auth,Country,Tag,Principal,ProfilePhoto,ProfileFormRule) {
         $scope.registerAccount={
             langKey:'en',
             userProfile:{
@@ -42,25 +42,31 @@ angular.module('haklistUserApp')
             event.preventDefault();
             $scope.selectCountry=$scope.countries[index];
         }
-        $scope.confirm = function () {
+        $scope.confirm = function (valid) {
+            $scope.submitted=true;
+
+            if(!valid)
+                return;
             $scope.registerAccount.userProfile.tags=collectSelectedTags();
             $scope.registerAccount.userProfile.country=$scope.selectCountry?$scope.selectCountry.country_code:"CH";
+
             if($scope.registerAccount.email.indexOf('@')<0){
                 alert('not valid email address!');
                 return;
             }
             $scope.registerAccount.login=$scope.registerAccount.email;
-            if ($scope.registerAccount.password == undefined ||
-                $scope.registerAccount.password.trim() == '') {
-                alert('Passwords can not be empty!');
-                $state.go('home');
-            } else {
-                Auth.createAccountExt($scope.registerAccount).then(function () {
-                    alert('Account Created!');
-                }).catch(function (response) {
-                    alert(response.data);
-                });
-            }
+
+            var additionalRule=ProfileFormRule.validate($scope.registerAccount);
+            $scope.formrule=additionalRule.result;
+            if(!additionalRule.pass)
+                return;
+
+            Auth.createAccountExt($scope.registerAccount).then(function () {
+                alert('Account Created!');
+            }).catch(function (response) {
+                alert(response.data);
+            });
+
         };
         $scope.upload=function(){
             var file = document.getElementById("fileinput").files[0];

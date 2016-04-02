@@ -52,7 +52,7 @@ user tags atleast four
             <div class="btn-group" style="min-width:auto;width:100%">
                 <input style="visibility:hidden" type="text" name="country" class="form-control" ng-model="selectCountry.name"
                        placeholder="Choose a country" aria-label="Text input with segmented button dropdown" required>
-                <button ng-class="{ address_dropdown_button:selectCountry.name, address_dropdown_button_default:!selectCountry.name}" type="button" class="btn btn-default">{{selectCountry.name?selectCountry.name:"Select Your Country"}}</button>
+                <button ng-class="{ address_dropdown_button:selectCountry.name, address_dropdown_button_default:!selectCountry.name}" type="button" data-toggle="dropdown" class="btn btn-default">{{selectCountry.name?selectCountry.name:"Select Your Country"}}</button>
                 <button style="border-radius: 1px;" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false"><span class="caret"></span> <span class="sr-only">Toggle Dropdown</span>
                 </button>

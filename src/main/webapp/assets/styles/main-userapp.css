@@ -243,3 +243,9 @@ user profile upload overlay effect
 .address_dropdown_button{
     min-width:auto;width:95%;border-radius: 1px;text-align:left!important;
 }
+
+
+.fixed_navbar{
+    padding-top: 20px;
+    background-color: rgba(245,245,245,0.7);
+}

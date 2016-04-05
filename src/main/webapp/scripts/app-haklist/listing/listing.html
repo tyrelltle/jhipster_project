@@ -7,7 +7,7 @@
         <div class="col-md-4" ng-repeat="i in getProfileListNumArr($index)" >
             <div class="card mycard" >
                 <img class="card-img-top"
-                     src="api/userProfiles/login/{{userProfiles[$parent.$index+i].login}}/photo"
+                     ng-src="{{'api/userProfiles/login/'+userProfiles[$parent.$index+i].login+'/photo'}}"
                      alt="Card image cap">
                 <div class="card_social_block">
                     <a class="fa fa-linkedin" href="{{userProfiles[$parent.$index+i].linkedIn}}"></a>
@@ -18,9 +18,9 @@
                     <h2 class="card-title" style="font-size:26px">{{userProfiles[$parent.$index+i].firstName}} {{userProfiles[$parent.$index+i].lastName}}</h2>
                     <h6 class="card-title" style="font-size: 14px;font-weight: normal;">Worked at {{userProfiles[$parent.$index+i].company}}</h6>
                     <div style="margin-top: 30px;">
-                        <h6><span class="fa fa-map-marker" style="font-size: 19px;font-weight: normal;color:gray;    padding-right: 3px;" aria-hidden="true"></span>    {{lookupCountryName(userProfiles[$parent.$index+i].country)}}</h6>
-                        <h6 style="color:#517AC6"><span class="fa fa-envelope-o" style="font-size: 12px;font-weight: normal;color:gray;    padding-right: 3px;" aria-hidden="true"></span>    {{userProfiles[$parent.$index+i].email}}</h6>
-                        <h6 style="color:#517AC6"><span class="fa fa-link" style="font-size: 12px;font-weight: normal;color:gray;    padding-right: 3px;" aria-hidden="true"></span>    {{userProfiles[$parent.$index+i].personalSite}}</h6>
+                        <h6 style="font-weight:normal"><span class="fa fa-map-marker" style="font-size: 19px;font-weight: normal;color:gray;    padding-right: 3px;" aria-hidden="true"></span>    {{lookupCountryName(userProfiles[$parent.$index+i].country)}}</h6>
+                        <h6 style="color:#517AC6;font-weight:normal"><span class="fa fa-envelope-o" style="font-size: 12px;font-weight: normal;color:gray;    padding-right: 3px;" aria-hidden="true"></span>    {{userProfiles[$parent.$index+i].email}}</h6>
+                        <h6 style="color:#517AC6;font-weight:normal"><span class="fa fa-link" style="font-size: 12px;font-weight: normal;color:gray;    padding-right: 3px;" aria-hidden="true"></span>    {{userProfiles[$parent.$index+i].personalSite}}</h6>
                     </div>
 
                     <hr align="CENTER" style="border-top: 1px solid #D2CBCB;">

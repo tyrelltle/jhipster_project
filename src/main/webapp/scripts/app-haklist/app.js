@@ -2,7 +2,7 @@
 
 angular.module('haklistApp', ['LocalStorageModule', 'ngResource', 'ngCacheBuster',]);
 
-angular.module('haklistUserApp', ['ui.bootstrap', 'ui.router', 'angular-loading-bar', 'haklistApp'])
+angular.module('haklistUserApp', ['ui.bootstrap', 'ui.router',  'haklistApp'])
 
     .run(function ($rootScope, $location, $window, $http, $state, Principal, Auth) {
         $state.go('home');

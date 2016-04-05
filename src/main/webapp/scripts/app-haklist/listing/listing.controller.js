@@ -16,19 +16,19 @@ angular.module('haklistUserApp')
             }, function (result, headers) {
                 $scope.links = ParseLinks.parse(headers('link'));
                 for (var i = 0; i < result.length; i++) {
-                    if(result[i].linkedIn.indexOf('http://')<0)
+                    if(result[i].linkedIn&&result[i].linkedIn.indexOf('http://')<0)
                         result[i].linkedIn='http://'+result[i].linkedIn;
 
-                    if(result[i].twitter.indexOf('http://')<0)
+                    if(result[i].twitter&&result[i].twitter.indexOf('http://')<0)
                         result[i].twitter='http://'+result[i].twitter;
 
-                    if(result[i].gitHub.indexOf('http://')<0)
+                    if(result[i].gitHub&&result[i].gitHub.indexOf('http://')<0)
                         result[i].gitHub='http://'+result[i].gitHub;
                     $scope.userProfiles.push(result[i]);
                 }
             });
         };
-        Country.query({}, function (countries) {
+        Country.list({}, function (countries) {
             $scope.countries = countries;
             $scope.loadAll();
         });

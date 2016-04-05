@@ -33,11 +33,11 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" ng-if="isAuthenticated()">
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{identity.firstName}} {{identity.lastName}}</a>
+                    <a href="#" style="color: #686868;" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{identity.firstName}} {{identity.lastName}}</a>
                     <ul class="dropdown-menu" style="width:350px;">
                         <li style="padding:40px">
                             <div class="row">
-                                <div class="col-md-4"><img width="100px" src="api/userProfiles/login/{{identity.login}}/photo?"></div>
+                                <div class="col-md-4"><img width="100px" ng-src="api/userProfiles/login/{{identity.login}}/photo?"></div>
                                 <div class="col-md-8" style="padding-left:30px">
                                     <p>{{identity.firstName}} {{identity.lastName}}</p>
                                     <p>{{identity.email}}</p>

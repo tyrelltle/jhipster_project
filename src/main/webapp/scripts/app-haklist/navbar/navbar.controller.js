@@ -29,6 +29,7 @@ angular.module('haklistUserApp')
         }
         $scope.isAuthenticated = Principal.isAuthenticated;
 
+
         Principal.identity().then(function(account) {
             $scope.identity=account;
         });

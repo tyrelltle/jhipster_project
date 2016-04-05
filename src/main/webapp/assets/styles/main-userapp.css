@@ -7,7 +7,13 @@ body {
     /* The html and body elements cannot have any padding or margin. */
 
     background-color: #f5f5f5;
+    font-family: 'roboto';
 
+
+}
+.page-header{
+    border:none;
+    margin-bottom:36px
 }
 
 .paging{
@@ -41,11 +47,6 @@ body {
 
 
 
-@media (min-width: 1000px) {
-    .container {
-        width: 960px;
-    }
-}
 /* Wrapper for page content to push down footer */
 #wrap {
     min-height: 100%;
@@ -86,10 +87,11 @@ code {
 
 /*card*/
 .card{
-    margin: 10px 10px 42px 10px;
-    padding:20px;
+    margin: 10px 10px 42px 2px;
+    padding:24px;
     background-color:white;
-    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.16), 0 0px 6px 0 rgba(0, 0, 0, 0.12) !important;
+    height:460px;
 }
 
 .center {
@@ -118,15 +120,16 @@ code {
 }
 
 .specialty_box > span{
-    border: solid 1.5px #2da84c;
+    border: solid 1px #2da84c;
     color: #2da84c;
     margin: 3px;
-    padding-top: 1px;
-    padding-bottom: 1px;
-    padding-right: 6px;
-    padding-left: 6px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 12px;
+    padding-left: 12px;
     white-space: nowrap;
     display: inline-block;
+
 }
 
 
@@ -221,8 +224,8 @@ user profile upload overlay effect
 }
 
 .card-img-top{
-    width:80px;
-    height:80px;
+    width:70px;
+    height:70px;
     border-radius:10px;
 }
 
@@ -248,4 +251,36 @@ user profile upload overlay effect
 .fixed_navbar{
     padding-top: 20px;
     background-color: rgba(245,245,245,0.7);
+    font-weight:500;
+    font-family:'roboto';
+}
+
+
+.header{
+
+    font-family: 'roboto';
+    font-size: 36px;
+    color:#686868;
+    font-weight:300;
+}
+
+
+.navbar-brand{
+    color:#686868
+}
+
+.card_social_block{
+    float: right;
+    width: 14px;
+}
+
+.card_social_block > a{
+    font-size: 20px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    color: #9C9C9C;
+}
+.navbar-right {
+    float: right !important;
+    margin-right: 10px!important;
 }

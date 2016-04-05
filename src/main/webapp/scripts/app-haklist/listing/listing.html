@@ -1,6 +1,6 @@
 
     <div class="page-header">
-        <h2>Discover Software Engineer from Everywhere</h2>
+        <h2 class="header">Discover Software Engineer from Everywhere</h2>
     </div>
 
     <div class="row" ng-repeat="profile in userProfiles" ng-if="$index % 3 == 0">
@@ -9,18 +9,23 @@
                 <img class="card-img-top"
                      src="api/userProfiles/login/{{userProfiles[$parent.$index+i].login}}/photo"
                      alt="Card image cap">
+                <div class="card_social_block">
+                    <a class="fa fa-linkedin" href="{{userProfiles[$parent.$index+i].linkedIn}}"></a>
+                    <a class="fa fa-github" href="{{userProfiles[$parent.$index+i].gitHub}}"></a>
+                    <a class="fa fa-twitter" href="{{userProfiles[$parent.$index+i].twitter}}"></a>
+                </div>
                 <div class="card-block">
-                    <h3 class="card-title">{{userProfiles[$parent.$index+i].firstName}} {{userProfiles[$parent.$index+i].lastName}}</h3>
-                    <h6 class="card-title">Worked at {{userProfiles[$parent.$index+i].company}}</h6>
+                    <h2 class="card-title" style="font-size:26px">{{userProfiles[$parent.$index+i].firstName}} {{userProfiles[$parent.$index+i].lastName}}</h2>
+                    <h6 class="card-title" style="font-size: 14px;font-weight: normal;">Worked at {{userProfiles[$parent.$index+i].company}}</h6>
                     <div style="margin-top: 30px;">
-                        <h6><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> {{lookupCountryName(userProfiles[$parent.$index+i].country)}}</h6>
-                        <h6><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> {{userProfiles[$parent.$index+i].email}}</h6>
-                        <h6><span class="glyphicon glyphicon-link" aria-hidden="true"></span>{{userProfiles[$parent.$index+i].personalSite}}</h6>
+                        <h6><span class="fa fa-map-marker" style="font-size: 19px;font-weight: normal;color:gray;    padding-right: 3px;" aria-hidden="true"></span>    {{lookupCountryName(userProfiles[$parent.$index+i].country)}}</h6>
+                        <h6 style="color:#517AC6"><span class="fa fa-envelope-o" style="font-size: 12px;font-weight: normal;color:gray;    padding-right: 3px;" aria-hidden="true"></span>    {{userProfiles[$parent.$index+i].email}}</h6>
+                        <h6 style="color:#517AC6"><span class="fa fa-link" style="font-size: 12px;font-weight: normal;color:gray;    padding-right: 3px;" aria-hidden="true"></span>    {{userProfiles[$parent.$index+i].personalSite}}</h6>
                     </div>
 
                     <hr align="CENTER" style="border-top: 1px solid #D2CBCB;">
 
-                    <h6>SPECIALTY</h6>
+                    <h6 style="margin-top: 30px;margin-bottom: 25px;">SPECIALTY</h6>
                     <div class="specialty_box">
                         <span ng-repeat="tag in userProfiles[$parent.$index+i].tags">{{tag}}</span>
                     </div>

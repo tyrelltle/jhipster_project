@@ -62,6 +62,10 @@ body {
 #footer {
     height: 60px;
     background-color: #f5f5f5;
+    border-top: solid;
+    border-width: 1px;
+    margin-top: 150px;
+    border-color: #B5B1B1;
 }
 
 

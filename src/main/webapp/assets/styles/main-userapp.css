@@ -11,6 +11,17 @@ body {
 
 
 }
+
+.navbar-toggle .icon-bar {
+    display: block;
+    width: 22px;
+    height: 2px;
+    border-radius: 1px;
+    z-index: 10000;
+    background-color: white;
+}
+
+
 .page-header{
     border:none;
     margin-bottom:36px
@@ -121,6 +132,21 @@ code {
     padding: 10px 28px 10px 28px !important;
     color:white;
     border:none
+}
+
+.navbar-toggle {
+    position: relative;
+    color: #686868 !important;
+    float: right;
+    padding: 9px 10px;
+    margin-top: 8px;
+    margin-right: 15px;
+    margin-bottom: 8px;
+    background-color: #A5A0A0;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: gray;
 }
 
 /*specialty box*/

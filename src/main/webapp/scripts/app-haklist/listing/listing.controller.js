@@ -11,7 +11,7 @@ angular.module('haklistUserApp')
         $scope.loadAll = function () {
             UserProfile.queryExt({
                 page: $scope.page,
-                size: 20,
+                size: 9,
                 sort: [$scope.predicate + ',' + ($scope.reverse ? 'asc' : 'desc'), 'id']
             }, function (result, headers) {
                 $scope.links = ParseLinks.parse(headers('link'));
@@ -45,6 +45,9 @@ angular.module('haklistUserApp')
             $scope.loadAll();
         };
         $scope.loadPage = function (page) {
+            if(page<0||(page>$scope.page&&$scope.userProfiles.length==0))
+                return;
+
             $scope.clear();
             $scope.page = page;
             $scope.loadAll();

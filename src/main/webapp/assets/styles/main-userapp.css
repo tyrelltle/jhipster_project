@@ -24,7 +24,7 @@ body {
 }
 .paging > .round_button{
     float: left;
-    background-color: white;
+    background-color: #F5F5F5;
     border: solid;
     border-color: #2da84c;
     color: #2da84c;
@@ -33,6 +33,11 @@ body {
     width: 150px;
 }
 
+.paging > .disabled{
+    cursor:default!important;
+    border-color: gray!important;
+    color: gray!important;
+}
 
 
 
@@ -284,6 +289,24 @@ user profile upload overlay effect
     cursor: pointer;
     color: #9C9C9C;
 }
+
+.card_social_block > a:hover {
+    text-decoration: none;
+    color:#2da84c;
+}
+
+.card_social_block > a:link {
+    text-decoration: none;
+}
+
+.card_social_block > a:visited {
+    text-decoration: none;
+}
+
+.card_social_block > a:active {
+    text-decoration: none;
+}
+
 .navbar-right {
     float: right !important;
     margin-right: 10px!important;

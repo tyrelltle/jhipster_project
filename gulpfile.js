@@ -51,7 +51,7 @@ gulp.task('test', ['wiredep:test', 'ngconstant:dev'], function(done) {
 
 
 gulp.task('copy', function() {
-    return es.merge( 
+    return es.merge(
         gulp.src(config.app + 'bower_components/bootstrap/fonts/*.*')
         .pipe(plumber({errorHandler: handleErrors}))
         .pipe(changed(config.dist + 'assets/fonts/'))
@@ -156,7 +156,7 @@ gulp.task('watch', function() {
     gulp.watch([config.app + '*.html', config.app + 'scripts/**', config.app + 'i18n/**']).on('change', browserSync.reload);
 });
 
-gulp.task('wiredep', ['wiredep:test', 'wiredep:app']);
+gulp.task('wiredep', ['wiredep:test', 'wiredep:app','wiredep:app2']);
 
 gulp.task('wiredep:app', function () {
     var stream = gulp.src(config.app + 'index.html')
@@ -168,6 +168,18 @@ gulp.task('wiredep:app', function () {
 
     return stream;
 });
+
+gulp.task('wiredep:app2', function () {
+    var stream = gulp.src(config.app + 'index-haklist.html')
+        .pipe(plumber({errorHandler: handleErrors}))
+        .pipe(wiredep({
+            exclude: [/angular-i18n/]
+        }))
+        .pipe(gulp.dest(config.app));
+
+    return stream;
+});
+
 
 gulp.task('wiredep:test', function () {
     return gulp.src(config.test + 'karma.conf.js')
@@ -192,7 +204,7 @@ gulp.task('wiredep:test', function () {
 });
 
 gulp.task('build', function (cb) {
-    runSequence('clean', 'copy', 'wiredep:app', 'ngconstant:prod', 'usemin', cb);
+    runSequence('clean', 'copy', 'wiredep:app','wiredep:app2', 'ngconstant:prod', 'usemin', cb);
 });
 
 gulp.task('usemin', ['images', 'styles'], function() {

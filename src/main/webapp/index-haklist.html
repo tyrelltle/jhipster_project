@@ -9,14 +9,18 @@
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         <!-- build:css assets/styles/vendor.css -->
         <!-- bower:css -->
-        <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css" />
-        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
-        <link href='https://fonts.googleapis.com/css?family=Roboto:300,900italic,900,700italic,700,500italic,500,400italic,400,300italic,100italic,100' rel='stylesheet' type='text/css'>        <!-- endbuild -->
-        <!-- build:css assets/styles/main.css -->
-        <link rel="stylesheet" href="assets/styles/main-userapp.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-
+        <link rel='stylesheet' href='bower_components/angular-loading-bar/build/loading-bar.css' />
+        <link rel='stylesheet' href='bower_components/bootstrap/dist/css/bootstrap.css' />
+        <!-- endbower -->
         <!-- endbuild -->
+
+        <!-- build:css assets/styles/main-userapp.css -->
+        <link rel="stylesheet" href="assets/styles/main-userapp.css">
+        <!-- endbuild -->
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <link href='https://fonts.googleapis.com/css?family=Roboto:300,900italic,900,700italic,700,500italic,500,400italic,400,300italic,100italic,100' rel='stylesheet' type='text/css'>
+
     </head>
     <body ng-app="haklistUserApp">
 
@@ -120,6 +124,7 @@
     <script src="bower_components/angular-cache-buster/angular-cache-buster.js"></script>
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
+    <script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
@@ -143,11 +148,7 @@
     <script src="scripts/app-haklist/userdetail/form.service.js"></script>
 
 
-    <!-- endbuild -->
 
-
-
-    <!--JHipster reusable components-->
     <script src="scripts/components/auth/provider/auth.xauth.service.js"></script>
     <script src="scripts/components/auth/auth.service.js"></script>
     <script src="scripts/components/auth/principal.service.js"></script>
@@ -168,5 +169,6 @@
     <script src="scripts/components/interceptor/auth.interceptor.js"></script>
     <script src="scripts/components/interceptor/errorhandler.interceptor.js"></script>
     <script src="scripts/components/interceptor/notification.interceptor.js"></script>
+    <!-- endbuild -->
 
 </html>

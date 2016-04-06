@@ -16,8 +16,8 @@ task liquibaseDiffChangelog(dependsOn: compileJava, type: JavaExec) {
   args "--changeLogFile=src/main/resources/config/liquibase/changelog/" + buildTimestamp() +"_changelog.xml"
   args "--referenceUrl=hibernate:spring:com.hak.haklist.domain?dialect=org.hibernate.dialect.MySQLInnoDBDialect"
   args "--username=admins"
-  args "--password=admins"
-  args "--url=jdbc:mysql://haklist.io:3306/haklist_dev"
+  args "--password=Siips123"
+  args "--url=jdbc:mysql://haklist.cd6x0wfs5clf.us-west-2.rds.amazonaws.com:3306/haklist"
   args "--driver=com.mysql.jdbc.Driver"
   args "diffChangeLog"
 

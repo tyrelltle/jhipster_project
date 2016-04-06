@@ -17,5 +17,4 @@
             tableName="country"/>
     </changeSet>
 
-
 </databaseChangeLog>

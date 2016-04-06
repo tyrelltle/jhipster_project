@@ -20,10 +20,10 @@ spring:
             enabled: false # we use Grunt + BrowserSync for livereload
     datasource:
         driver-class-name: com.mysql.jdbc.jdbc2.optional.MysqlDataSource
-        url: jdbc:mysql://haklist.io:3306/haklist_dev?useUnicode=true&characterEncoding=utf8
+        url: jdbc:mysql://haklist.cd6x0wfs5clf.us-west-2.rds.amazonaws.com:3306/haklist?useUnicode=true&characterEncoding=utf8
         name:
         username: admins
-        password: admins
+        password: Siips123
     jpa:
         database-platform: org.hibernate.dialect.MySQLInnoDBDialect
         database: MYSQL

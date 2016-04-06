@@ -8,12 +8,12 @@ user tags atleast four
 <div style="width:500px !important;    margin-top:100px;" class="center">
     <form name="userForm" novalidate>
         <div class="row">
-            <div class="col-md-3 imgitem">
+            <div class="col-md-3 col-sm-3 col-xs-3 imgitem">
                 <div class="fileUpload btn btn-primary uploadoverlay-bg">
                     <input type="file" class="upload" id="fileinput2" accept="image/*" name="file"/>
                 </div>
 
-                <div class="fileUpload btn btn-primary uploadoverlay" style='background-image: url("{{picturesrc}}")'>
+                <div class="fileUpload btn btn-primary uploadoverlay" style='background-image: url("{{picturesrc}}");z-index: 100000;'>
                     <input type="file" class="upload" id="fileinput" accept="image/*" name="file"
                            onchange="angular.element(this).scope().upload()"/>
                 </div>

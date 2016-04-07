@@ -76,7 +76,7 @@ public class UserProfileService {
     @Transactional(readOnly = true)
     public Page<PublicProfileDTP> findAllExt(Pageable pageable) {
         log.debug("Request to get all UserProfiles");
-        Page<UserProfile> result = userProfileRepository.findAll(pageable);
+        Page<UserProfile> result = userProfileRepository.findAllByOrderByUserCreatedDateDesc(pageable);
         Page<PublicProfileDTP> resultext=new PageImpl<>(PublicProfileDTP.toList(result.getContent()),
                                                         pageable,
                                                         result.getTotalElements());

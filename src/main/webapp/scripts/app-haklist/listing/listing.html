@@ -38,5 +38,5 @@
 
     <div class="center paging">
         <button class="round_button leftbtn" ng-click="loadPage(page - 1)" ng-class="page>0?'round_button':'round_button disabled'">Previous Page</button>
-        <button class="round_button rightbtn" ng-click="loadPage(page + 1)" ng-class="userProfiles.length>0?'round_button':'round_button disabled'">Next Page</button>
+        <button class="round_button rightbtn" ng-click="loadPage(page + 1)" ng-class="totalItems>(page+1)*15?'round_button':'round_button disabled'">Next Page</button>
     </div>

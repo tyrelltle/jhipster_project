@@ -68,9 +68,10 @@ user tags atleast four
                required>
         <p ng-show="userForm.company.$invalid &&submitted" class="help-block formerr">You company is required.</p>
 
-        <input type="text" name="email" class="form-control" placeholder="E-mail Address"
+        <input type="email" name="email" class="form-control" placeholder="E-mail Address"
                aria-label="Text input with segmented button dropdown" ng-model="registerAccount.email" required>
-        <p ng-show="userForm.email.$invalid &&submitted" class="help-block formerr">You email is required.</p>
+        <p ng-show="userForm.email.$error.required &&submitted" class="help-block formerr">You email is required.</p>
+        <p ng-show="userForm.email.$error.email &&submitted" class="help-block formerr">Please enter a valid email.</p>
 
         <input ng-if="!editmode" name="password" type="text" class="form-control" placeholder="Password"
                aria-label="Text input with segmented button dropdown" ng-model="registerAccount.password" ng-minlength="5" required>

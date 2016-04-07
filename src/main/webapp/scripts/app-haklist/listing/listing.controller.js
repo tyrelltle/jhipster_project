@@ -11,10 +11,11 @@ angular.module('haklistUserApp')
         $scope.loadAll = function () {
             UserProfile.queryExt({
                 page: $scope.page,
-                size: 9,
+                size: 15,
                 sort: [$scope.predicate + ',' + ($scope.reverse ? 'asc' : 'desc'), 'id']
             }, function (result, headers) {
                 $scope.links = ParseLinks.parse(headers('link'));
+                $scope.totalItems = headers('X-Total-Count');
                 for (var i = 0; i < result.length; i++) {
                     if(result[i].linkedIn&&result[i].linkedIn.indexOf('http://')<0)
                         result[i].linkedIn='http://'+result[i].linkedIn;

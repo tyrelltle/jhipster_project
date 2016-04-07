@@ -30,11 +30,8 @@ body {
 .paging{
     width:342px;
 }
-.rightbtn{
-    float:right !important;
-}
+
 .paging > .round_button{
-    float: left;
     background-color: #F5F5F5;
     border: solid;
     border-color: #2da84c;
@@ -45,9 +42,7 @@ body {
 }
 
 .paging > .disabled{
-    cursor:default!important;
-    border-color: gray!important;
-    color: gray!important;
+    display:none;
 }
 
 
@@ -117,7 +112,8 @@ code {
 .center {
     display: block;
     margin-left: auto;
-    margin-right: auto
+    margin-right: auto;
+    text-align: center
 }
 
 .add_yourself{

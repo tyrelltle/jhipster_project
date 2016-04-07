@@ -15,6 +15,7 @@ angular.module('haklistUserApp')
 
         $scope.signin=function(){
             event.preventDefault();
+            $scope.authenticationError = false;
             Auth.login({
                 username: $scope.user.username,
                 password: $scope.user.password

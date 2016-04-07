@@ -18,6 +18,7 @@
                             <input style="margin-bottom: 15px;" type="text" placeholder="Username" id="username" name="username" ng-model="user.username">
                             <input style="margin-bottom: 15px;" type="password" placeholder="Password" id="password" name="password" ng-model="user.password">
                             <input class="btn btn-primary btn-block" type="submit" id="sign-in" value="Sign In" ng-click="signin()">
+                            <p ng-if="authenticationError" style="color:red">Authentication Failed</p>
                         </form>
                     </div>
 

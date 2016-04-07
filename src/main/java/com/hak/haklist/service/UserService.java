@@ -146,6 +146,7 @@ public class UserService {
             userProfile.setTwitter_path(userProfileDTO.getTwitter());
             userProfile.setWebsite(userProfileDTO.getPersonalSite());
             userProfile.setUser(newUser);
+            userProfile.setContest_reg(userProfileDTO.isContest_reg());
             userProfileService.addUserTag(userProfile,userProfileDTO.getTags(),false);
             userProfileRepository.save(userProfile);
 

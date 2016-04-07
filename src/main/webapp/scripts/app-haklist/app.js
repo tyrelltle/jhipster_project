@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('haklistApp', ['LocalStorageModule', 'ngResource', 'ngCacheBuster',]);
+angular.module('haklistApp', ['ui.bootstrap','LocalStorageModule', 'ngResource', 'ngCacheBuster']);
 
-angular.module('haklistUserApp', ['ui.bootstrap', 'ui.router',  'haklistApp'])
+angular.module('haklistUserApp', ['ui.router','haklistApp','ui.bootstrap'])
 
     .run(function ($rootScope, $location, $window, $http, $state, Principal, Auth) {
         $state.go('home');
@@ -63,6 +63,24 @@ angular.module('haklistUserApp', ['ui.bootstrap', 'ui.router',  'haklistApp'])
                     pageTitle: ''
                 },
             })
+            .state('contest_reg', {
+                url: "/contest_reg",
+                views: {
+                    'navbar@': {
+                        templateUrl: 'scripts/app-haklist/navbar/navbar.html',
+                        controller: 'NavbarController'
+                    },
+                    'content@': {
+                        templateUrl: 'scripts/app-haklist/contest/contest_reg.html',
+                        controller: 'ContestRegController'
+                    }
+                },
+                data: {
+                    authorities: ['ROLE_ADMIN'],
+                    pageTitle: ''
+                },
+            })
+
 
             /**
              * TODO:

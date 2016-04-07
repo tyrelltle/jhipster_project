@@ -24,6 +24,10 @@ angular.module('haklistApp')
             'updateExt': {
                 method: 'PUT',
                 url: '/api/userProfiles/ext'
+            },
+            'contest_reg':{
+                method: 'POST',
+                url:'/api/userProfiles/contest_reg'
             }
 
         });

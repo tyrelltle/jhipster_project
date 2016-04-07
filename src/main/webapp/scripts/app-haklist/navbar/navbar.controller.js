@@ -6,11 +6,30 @@ angular.module('haklistUserApp')
 
         $scope.gohome=function(){
             $state.go('home');
+            $('body').attr('class','whitebody');
         }
+
+        $scope.currentState=$state.current.name;
+        if($scope.currentState=='contest_reg'){
+            $('body').attr('class','blackbody');
+            $('.footer').attr('class','footer_getdown');
+        }else{
+            $('body').attr('class','whitebody');
+            $('.footer_getdown').attr('class','footer');
+
+        }
+
 
         $scope.signup=function(){
             event.preventDefault();
             $state.go('signup');
+        }
+
+        $scope.goto_contest=function(){
+            event.preventDefault();
+            $state.go('contest_reg');
+            $('body').attr('class','blackbody');
+
         }
 
         $scope.signin=function(){

@@ -218,4 +218,13 @@ public class UserProfileService {
         Hibernate.initialize(user.getUserProfile().getProfilePicture());
         return user.getUserProfile().getProfilePicture();
     }
+
+    @Transactional
+    public void registerForContest(String login) {
+        UserProfile userP=userProfileRepository.findOneByUserLogin(login);
+        if(!userP.isContest_reg()) {
+            userP.setContest_reg(true);
+            userProfileRepository.save(userP);
+        }
+    }
 }

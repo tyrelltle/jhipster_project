@@ -22,7 +22,9 @@ public class UserProfileDTO {
     private String gitHub;
     private String twitter;
     private String personalSite;
+    private Boolean contest_reg;
     private List<String> tags;
+
     public UserProfileDTO() {
     }
 
@@ -34,6 +36,7 @@ public class UserProfileDTO {
             this.gitHub = userProfile.getGithub_path();
             this.twitter = userProfile.getTwitter_path();
             this.personalSite = userProfile.getWebsite();
+            this.contest_reg=userProfile.isContest_reg();
             this.tags=userProfile.getTags()==null?null:userProfile.getTags()
                                                                     .stream()
                                                                     .map(tag->tag.getName())
@@ -42,7 +45,7 @@ public class UserProfileDTO {
     }
 
     public UserProfileDTO(String country, String company, String linkedIn, String gitHub,
-                          String twitter, String personalSite) {
+                          String twitter, String personalSite,boolean contest_reg) {
 
         this.country = country;
         this.company = company;
@@ -50,6 +53,7 @@ public class UserProfileDTO {
         this.gitHub = gitHub;
         this.twitter = twitter;
         this.personalSite = personalSite;
+        this.contest_reg=contest_reg;
     }
 
     public String getCountry() {
@@ -108,6 +112,15 @@ public class UserProfileDTO {
         this.tags = tags;
     }
 
+    public Boolean isContest_reg() {
+        return contest_reg;
+    }
+
+    public void setContest_reg(Boolean contest_reg) {
+
+        this.contest_reg = contest_reg==null?false:contest_reg;
+    }
+
     @Override
     public String toString() {
         return "UserProfileDTO{" +
@@ -117,6 +130,7 @@ public class UserProfileDTO {
             ", gitHub='" + gitHub + '\'' +
             ", twitter='" + twitter + '\'' +
             ", personalSite=" + personalSite +
+            ", contest_reg=" + contest_reg +
             "}";
     }
 }

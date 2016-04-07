@@ -4,6 +4,7 @@ import com.codahale.metrics.annotation.Timed;
 import com.hak.haklist.domain.User;
 import com.hak.haklist.domain.UserProfile;
 import com.hak.haklist.repository.UserRepository;
+import com.hak.haklist.security.SecurityUtils;
 import com.hak.haklist.service.UserProfileService;
 import com.hak.haklist.web.rest.dto.PublicProfileDTP;
 import com.hak.haklist.web.rest.dto.UserExtDTO;
@@ -178,6 +179,21 @@ public class UserProfileResource {
         log.debug("REST request to delete UserProfile : {}", id);
         userProfileService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("userProfile", id.toString())).build();
+    }
+
+
+    /**
+     * POST  /userProfiles/contest_reg -> register currently logged on userProfile for contest by userid.
+     */
+    @RequestMapping(value = "/userProfiles/contest_reg",
+        method = RequestMethod.POST,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<Void> contestreg() {
+        String currentUserLogin = SecurityUtils.getCurrentUserLogin();
+        log.debug("REST request to register UserProfile for contest with username: {}", currentUserLogin);
+        userProfileService.registerForContest(currentUserLogin);
+        return ResponseEntity.ok().build();
     }
 
 

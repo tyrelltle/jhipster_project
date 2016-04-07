@@ -38,6 +38,9 @@ public class UserProfile implements Serializable {
     @Column(name = "company")
     private String company;
 
+    @Column(name = "contest_reg")
+    private Boolean contest_reg;
+
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "userProfile", fetch = FetchType.LAZY)
     @JsonIgnore
     private User user;
@@ -134,6 +137,14 @@ public class UserProfile implements Serializable {
         return tags;
     }
 
+    public Boolean isContest_reg() {
+        return contest_reg==null?false:contest_reg;
+    }
+
+    public void setContest_reg(Boolean contest_reg) {
+
+        this.contest_reg=contest_reg==null?false:contest_reg;
+    }
 
     public ProfilePicture getProfilePicture() {
         return profilePicture;
@@ -177,6 +188,7 @@ public class UserProfile implements Serializable {
             ", website='" + website + "'" +
             ", country='" + country + "'" +
             ", company='" + company + "'" +
+            ", contest_reg='" + contest_reg + "'" +
             '}';
     }
 }

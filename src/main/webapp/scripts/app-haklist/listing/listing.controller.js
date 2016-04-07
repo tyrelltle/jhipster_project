@@ -1,13 +1,20 @@
 'use strict';
 
 angular.module('haklistUserApp')
-    .controller('ListingController', function ($scope, $state, UserProfile, ParseLinks, Country) {
+    .controller('ListingController', function ($scope, $uibModal,$state, UserProfile, ParseLinks, Country,localStorageService) {
 
         $scope.userProfiles = [];
         $scope.countries = [];
         $scope.predicate = 'id';
         $scope.reverse = true;
         $scope.page = 0;
+
+
+        if(localStorageService.get('contest_reg_confirmed')){
+            localStorageService.set('contest_reg_confirmed',false);
+            $('#confirmmodal').modal();
+        }
+
         $scope.loadAll = function () {
             UserProfile.queryExt({
                 page: $scope.page,

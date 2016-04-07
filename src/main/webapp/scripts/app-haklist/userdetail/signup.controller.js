@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('haklistUserApp')
-    .controller('SignupController', function ($scope,$state,Auth,Country,Tag,Principal,ProfilePhoto,ProfileFormRule) {
+    .controller('SignupController', function ($scope,$state,Auth,Country,Tag,Principal,ProfilePhoto,ProfileFormRule,localStorageService) {
         $scope.registerAccount={
             langKey:'en',
             userProfile:{
@@ -39,7 +39,7 @@ angular.module('haklistUserApp')
             event.preventDefault();
             $scope.selectCountry=$scope.countries[index];
         }
-        $scope.confirm = function (valid) {
+        $scope.confirm = function(valid) {
             $scope.submitted=true;
 
             if(!valid)
@@ -58,6 +58,10 @@ angular.module('haklistUserApp')
             if(!additionalRule.pass)
                 return;
 
+            if(localStorageService.get('need_contest_Reg')){
+                $scope.registerAccount.userProfile.contest_reg=true;
+            }
+
             Auth.createAccountExt($scope.registerAccount).then(function () {
 
                 Auth.login({
@@ -66,6 +70,9 @@ angular.module('haklistUserApp')
                 }).then(function () {
                     if($scope.file){
                         ProfilePhoto.upload($scope.file);
+                    }
+                    if(localStorageService.get('need_contest_Reg')){
+                        localStorageService.set('contest_reg_confirmed',true);
                     }
                     $state.go('home');
                 });

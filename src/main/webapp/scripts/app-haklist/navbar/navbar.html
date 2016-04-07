@@ -1,4 +1,4 @@
-<div class="navbar navbar-fixed-top fixed_navbar">
+<div class="navbar navbar-fixed-top" ng-class="{fixed_navbar:(currentState=='home'), fixed_navbar_black:(currentState=='contest_reg')}">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -6,7 +6,9 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#" ng-click="gohome()">HAKLIST</a>
+            <a class="navbar-brand" ng-class="{active:(currentState!='contest_reg')}" href="#" ng-click="gohome()">HAKLIST</a>
+            <a class="navbar-brand" ng-class="{active:(currentState=='contest_reg')}" href="#" ng-click="goto_contest()">CONTEST</a>
+
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" ng-if="!isAuthenticated()">
@@ -34,7 +36,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" ng-if="isAuthenticated()">
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
-                    <a href="#" style="color: #686868;" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{identity.firstName}} {{identity.lastName}}</a>
+                    <a  style="color: #686868;" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{identity.firstName}} {{identity.lastName}}</a>
                     <ul class="dropdown-menu" style="width:350px;">
                         <li style="padding:40px">
                             <div class="row">

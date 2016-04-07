@@ -178,6 +178,7 @@ public class UserProfileService {
             userProfile.setGithub_path(userExtDTO.getUserProfile().getGitHub());
             userProfile.setLinkedin_path(userExtDTO.getUserProfile().getLinkedIn());
             userProfile.setTwitter_path(userExtDTO.getUserProfile().getTwitter());
+            userProfile.setWebsite(userExtDTO.getUserProfile().getPersonalSite());
             log.debug("Changed Information for UserProfile: {}", userProfile);
             addUserTag(userProfile,userExtDTO.getUserProfile().getTags(),false);
             userProfileRepository.save(userProfile);

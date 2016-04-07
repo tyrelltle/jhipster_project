@@ -17,13 +17,13 @@ angular.module('haklistUserApp')
                 $scope.links = ParseLinks.parse(headers('link'));
                 $scope.totalItems = headers('X-Total-Count');
                 for (var i = 0; i < result.length; i++) {
-                    if(result[i].linkedIn&&result[i].linkedIn.indexOf('http://')<0)
+                    if(result[i].linkedIn&&result[i].linkedIn.indexOf('http')<0)
                         result[i].linkedIn='http://'+result[i].linkedIn;
 
-                    if(result[i].twitter&&result[i].twitter.indexOf('http://')<0)
+                    if(result[i].twitter&&result[i].twitter.indexOf('http')<0)
                         result[i].twitter='http://'+result[i].twitter;
 
-                    if(result[i].gitHub&&result[i].gitHub.indexOf('http://')<0)
+                    if(result[i].gitHub&&result[i].gitHub.indexOf('http')<0)
                         result[i].gitHub='http://'+result[i].gitHub;
                     $scope.userProfiles.push(result[i]);
                 }

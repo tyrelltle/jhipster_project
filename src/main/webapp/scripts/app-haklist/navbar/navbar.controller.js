@@ -12,11 +12,8 @@ angular.module('haklistUserApp')
         $scope.currentState=$state.current.name;
         if($scope.currentState=='contest_reg'){
             $('body').attr('class','blackbody');
-            $('.footer').attr('class','footer_getdown');
         }else{
             $('body').attr('class','whitebody');
-            $('.footer_getdown').attr('class','footer');
-
         }
 
 

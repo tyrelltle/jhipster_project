@@ -78,6 +78,7 @@
     margin: 0 auto -60px;
     /* Pad bottom by footer height */
     padding: 0 0 60px;
+    margin-bottom: 50px;
 }
 
 /* Set the fixed height of the footer here */

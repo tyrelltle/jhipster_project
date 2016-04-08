@@ -20,6 +20,7 @@ angular.module('haklistUserApp')
                 Principal.identity().then(function(id){
                     UserProfile.contest_reg({},function(){
                         $scope.alreadyRegistered=true;
+                        $('#confirmmodal').modal();
                     });
                 });
 

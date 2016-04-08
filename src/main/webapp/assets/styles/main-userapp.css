@@ -369,3 +369,12 @@ user profile upload overlay effect
     float: right !important;
     margin-right: 10px!important;
 }
+
+.contest_reg_button{
+    margin: 0 auto;width: 220px;font-family: 'roboto';font-weight: 300;  font-size:14px;  height: 53px;
+}
+
+.contest_already_reg {
+    cursor:initial;
+    opacity:0.5;
+}

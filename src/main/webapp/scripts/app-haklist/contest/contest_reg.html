@@ -26,16 +26,32 @@
         </h5>
 
         <div style="margin: 0 auto;
-                    width: 120px;">
+                    width: 220px;">
 
-            <button ng-if="!alreadyRegistered" style="margin:auto;width: 130px;"
-               class="dropdown-toggle round_button add_yourself"
+            <button ng-if="!alreadyRegistered"
+               class="dropdown-toggle round_button add_yourself contest_reg_button"
                ng-click="register()" >Register Now</button>
 
-            <button ng-if="alreadyRegistered"  style="margin:auto;width: 130px;background-color:#005400"
-               class="dropdown-toggle round_button add_yourself">Successfully Registered</button>
+            <button ng-if="alreadyRegistered"
+               class="dropdown-toggle round_button add_yourself contest_reg_button contest_already_reg">Successfully Registered</button>
         </div>
 
     </div>
 
 
+    <div class="modal fade" id="confirmmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="exampleModalLabel"></h4>
+                </div>
+                <div class="modal-body">
+                    <h1 style="font-family: 'roboto';font-weight: 300;font-size: 39px;text-align:center">You’ve Successfully Registered, We will email you once the contest is ready!</h1>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Got it</button>
+                </div>
+            </div>
+        </div>
+    </div>

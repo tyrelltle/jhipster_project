@@ -309,6 +309,7 @@ user profile upload overlay effect
 
 
 .fixed_navbar{
+    margin:0 !important;
     padding-top: 20px;
     background-color: rgba(245,245,245,0.7);
     font-weight:500;
@@ -316,10 +317,14 @@ user profile upload overlay effect
 }
 
 .fixed_navbar_black{
+    margin:0 !important;
     background-color: hsl(0, 2%, 17%);
     padding-top: 20px;
     font-weight:500;
     font-family:'roboto';
+}
+.navbar-header{
+    margin:0 !important;
 }
 
 .header{

@@ -30,7 +30,7 @@
 
             <button ng-if="!alreadyRegistered"
                class="dropdown-toggle round_button add_yourself contest_reg_button"
-               ng-click="register()" >Register Now</button>
+               ng-click="register($event)" >Register Now</button>
 
             <button ng-if="alreadyRegistered"
                class="dropdown-toggle round_button add_yourself contest_reg_button contest_already_reg">Successfully Registered</button>

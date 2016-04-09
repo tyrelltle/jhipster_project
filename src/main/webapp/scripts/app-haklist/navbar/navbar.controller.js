@@ -17,19 +17,19 @@ angular.module('haklistUserApp')
         }
 
 
-        $scope.signup=function(){
+        $scope.signup=function(event){
             event.preventDefault();
             $state.go('signup');
         }
 
-        $scope.goto_contest=function(){
+        $scope.goto_contest=function(event){
             event.preventDefault();
             $state.go('contest_reg');
             $('body').attr('class','blackbody');
 
         }
 
-        $scope.signin=function(){
+        $scope.signin=function(event){
             event.preventDefault();
             $scope.authenticationError = false;
             Auth.login({

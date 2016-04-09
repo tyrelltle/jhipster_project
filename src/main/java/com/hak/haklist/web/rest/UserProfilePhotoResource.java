@@ -57,8 +57,7 @@ public class UserProfilePhotoResource {
         headers.setContentType(MediaType.IMAGE_JPEG);
         byte[] ret;
         if(picture==null){
-            ret= resourceLoader.getFile("images/defaul_avatar.png");
-            headers.setContentLength(ret.length);
+            ret= null;
         }else{
             headers.setContentLength((long) picture.getSize());
             ret=picture.getImage_data();

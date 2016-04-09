@@ -14,7 +14,7 @@ angular.module('haklistUserApp')
             }
         });
 
-        $scope.register=function(){
+        $scope.register=function(event){
             event.preventDefault();
             if(Principal.isAuthenticated()){
                 Principal.identity().then(function(id){

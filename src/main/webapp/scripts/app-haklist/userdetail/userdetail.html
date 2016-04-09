@@ -56,17 +56,15 @@ user tags atleast four
                         aria-haspopup="true" aria-expanded="false"><span class="caret"></span> <span class="sr-only">Toggle Dropdown</span>
                 </button>
                 <ul class="dropdown-menu scrollable-menu" style="min-width:auto;width:100%">
-                    <li ng-repeat="country in countries"><a href="#" ng-click="country_select($index)">{{country.name}}</a></li>
+                    <li ng-repeat="country in countries"><a href="#" ng-click="country_select($event,$index)">{{country.name}}</a></li>
                 </ul>
                 <p ng-show="userForm.country.$invalid &&submitted" class="help-block formerr">You country is required.</p>
 
             </div>
         </div>
         <input type="text" name="company" class="form-control"
-               placeholder="Where are you working at (Leave it empty will be filled with 'Hire Me'"
-               aria-label="Text input with segmented button dropdown" ng-model="registerAccount.userProfile.company"
-               required>
-        <p ng-show="userForm.company.$invalid &&submitted" class="help-block formerr">You company is required.</p>
+               placeholder="Where are you working at (Leave it empty will be filled with 'Hire Me')"
+               aria-label="Text input with segmented button dropdown" ng-model="registerAccount.userProfile.company">
 
         <input type="email" name="email" class="form-control" placeholder="E-mail Address"
                aria-label="Text input with segmented button dropdown" ng-model="registerAccount.email" required>

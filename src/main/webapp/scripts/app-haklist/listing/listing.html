@@ -17,7 +17,8 @@
                 </div>
                 <div class="card-block">
                     <h2 class="card-title" style="font-size:26px">{{userProfiles[$parent.$index+i].firstName}} {{userProfiles[$parent.$index+i].lastName}}</h2>
-                    <h6 class="card-title" style="font-size: 14px;font-weight: normal;">Worked at {{userProfiles[$parent.$index+i].company}}</h6>
+                    <h6 class="card-title" style="font-size: 14px;font-weight: normal;" ng-show="userProfiles[$parent.$index+i].company">Work at {{userProfiles[$parent.$index+i].company}}</h6>
+                    <h6 class="card-title" style="font-size: 14px;font-weight: normal;" ng-show="!userProfiles[$parent.$index+i].company">Hire Me</h6>
                     <div style="margin-top: 30px;">
                         <h6 style="font-weight:normal"><span class="fa fa-map-marker" style="font-size: 19px;font-weight: normal;color:gray;    padding-right: 3px;" aria-hidden="true"></span>    {{lookupCountryName(userProfiles[$parent.$index+i].country)}}</h6>
                         <h6 style="color:#517AC6;font-weight:normal"><span class="fa fa-envelope-o" style="font-size: 12px;font-weight: normal;color:gray;    padding-right: 3px;" aria-hidden="true"></span>    {{userProfiles[$parent.$index+i].email}}</h6>

@@ -6,8 +6,8 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" ng-class="{active:(currentState!='contest_reg')}" href="#" ng-click="gohome()">HAKLIST</a>
-            <a class="navbar-brand" ng-class="{active:(currentState=='contest_reg')}" href="#" ng-click="goto_contest()">CONTEST</a>
+            <a class="navbar-brand" ng-class="{active:(currentState!='contest_reg')}" href="#" ng-click="gohome($event)">HAKLIST</a>
+            <a class="navbar-brand" ng-class="{active:(currentState=='contest_reg')}" href="#" ng-click="goto_contest($event)">CONTEST</a>
 
         </div>
 
@@ -19,14 +19,14 @@
                         <form method="post" action="login" accept-charset="UTF-8">
                             <input style="margin-bottom: 15px;" type="text" placeholder="Username" id="username" name="username" ng-model="user.username">
                             <input style="margin-bottom: 15px;" type="password" placeholder="Password" id="password" name="password" ng-model="user.password">
-                            <input class="btn btn-primary btn-block" type="submit" id="sign-in" value="Sign In" ng-click="signin()">
+                            <input class="btn btn-primary btn-block" type="submit" id="sign-in" value="Sign In" ng-click="signin($event)">
                             <p ng-if="authenticationError" style="color:red">Authentication Failed</p>
                         </form>
                     </div>
 
                 </li>
                 <li>
-                    <a href="#" class="dropdown-toggle round_button add_yourself" ng-click="signup()">ADD YOURSELF</a>
+                    <a href="#" class="dropdown-toggle round_button add_yourself" ng-click="signup($event)">ADD YOURSELF</a>
                 </li>
             </ul>
         </div>
@@ -45,7 +45,7 @@
                                     <p>{{identity.firstName}} {{identity.lastName}}</p>
                                     <p>{{identity.email}}</p>
 
-                                    <button id="view_profile_btn" ng-click="viewprofile()">VIEW PROFILE</button>
+                                    <button id="view_profile_btn" ng-click="viewprofile($event)">VIEW PROFILE</button>
                                 </div>
                             </div>
 

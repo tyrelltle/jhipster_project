@@ -35,7 +35,7 @@ angular.module('haklistUserApp')
             return ret;
         }
 
-        $scope.country_select=function(index){
+        $scope.country_select=function(event,index){
             event.preventDefault();
             $scope.selectCountry=$scope.countries[index];
         }

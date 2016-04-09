@@ -10,10 +10,7 @@ import com.hak.haklist.service.util.ResourceLoader;
 import com.hak.haklist.web.rest.util.ImageUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -54,7 +51,7 @@ public class UserProfilePhotoResource {
     public HttpEntity<byte[]> getPhoto(@PathVariable String login) throws IOException {
         ProfilePicture picture = userProfileService.getProfilePictureByUserLogin(login);
         HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.IMAGE_JPEG);
+        headers.setContentType(MediaType.valueOf(picture.getImage_type()));
         byte[] ret;
         if(picture==null){
             ret= null;
@@ -88,7 +85,12 @@ public class UserProfilePhotoResource {
         BufferedImage originalImage = ImageIO.read(new ByteArrayInputStream(bytes));
         BufferedImage resizedImage = ImageUtil.scaleImage(originalImage, IMAGE_DIMENSION[0], IMAGE_DIMENSION[1]);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        ImageIO.write(resizedImage,"jpg",baos);
+
+        if(!ImageUtil.validImageType(mimeType)){
+            return new ResponseEntity<>(HttpStatus.UNSUPPORTED_MEDIA_TYPE);
+        }
+
+        ImageIO.write(resizedImage,mimeType.split("/")[1],baos);
         byte[] finalbytes=baos.toByteArray();
         userProfileService.setProfilePictureByUserId(currentUser.getId(),finalbytes,mimeType);
         return ResponseEntity.ok().build();

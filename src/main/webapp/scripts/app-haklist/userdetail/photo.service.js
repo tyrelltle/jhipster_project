@@ -2,7 +2,7 @@ angular.module('haklistUserApp')
     .service('ProfilePhoto', function ($http) {
         this.upload=function(file,cb){
             var formData = new FormData();
-            formData.append('file', file);
+            formData.append('afile', file);
 
             $http({
                 method: 'POST',

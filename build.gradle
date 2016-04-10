@@ -46,11 +46,11 @@ bootRun {
 }
 
 
-test {
-    println 'Starting the Unit and Integration test'
-    include '**/*UnitTest*'
-    include '**/*IntTest*'
-}
+//test {
+//    println 'Starting the Unit and Integration test'
+//    include '**/*UnitTest*'
+//    include '**/*IntTest*'
+//}
 
 task cucumberTest(type: Test) {
     include '**/CucumberTest*'

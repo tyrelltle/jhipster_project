@@ -1,11 +1,14 @@
 package com.hak.haklist.config;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.boot.context.embedded.MultipartConfigFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.multipart.MultipartResolver;
-import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+
+import javax.servlet.MultipartConfigElement;
 
 /**
  * Configuration for server side routes.
@@ -17,6 +20,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 public class WebMvcConfig {
 
     public static final int MAX_UPLOAD_SIZE = 50 * 1024 * 1024; //50MB
+    private final Logger log = LoggerFactory.getLogger(WebMvcConfig.class);
 
     @Bean
     public WebMvcConfigurerAdapter forwardToIndex() {
@@ -31,12 +35,22 @@ public class WebMvcConfig {
         };
     }
 
-    @Bean
+   /* @Bean
     public MultipartResolver getMultipartResolver() {
+        log.debug("========entering WebMvcConfig.getMultipartResolve()");
         CommonsMultipartResolver resolver = new CommonsMultipartResolver();
         resolver.setMaxUploadSize(MAX_UPLOAD_SIZE);
        // resolver.setMaxInMemorySize(MAX_UPLOAD_SIZE);
         return resolver;
+    }
+    */
+
+    @Bean
+    public MultipartConfigElement multipartConfigElement() {
+        MultipartConfigFactory factory = new MultipartConfigFactory();
+        factory.setMaxFileSize("50MB");
+        factory.setMaxRequestSize("50MB");
+        return factory.createMultipartConfig();
     }
 
 }

@@ -13,7 +13,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.imageio.ImageIO;
 import javax.inject.Inject;
@@ -63,10 +62,11 @@ public class UserProfilePhotoResource {
      * POST  /userProfiles/photo -> Create a new userProfile.
      */
     @RequestMapping(value = "/userProfiles/photo",
-        method = RequestMethod.POST)
+        method = RequestMethod.POST,consumes = "multipart/form-data")
     @Timed
-    public ResponseEntity<Void> uploadImage(MultipartHttpServletRequest request,@RequestParam("file") MultipartFile file) throws URISyntaxException, IOException {
+    public ResponseEntity<Void> uploadImage(@RequestParam("afile") MultipartFile file) throws URISyntaxException, IOException {
 
+        log.debug("======wihtin upload controller");
         User currentUser=userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
 
 

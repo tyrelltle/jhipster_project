@@ -28,7 +28,7 @@ public class ImageUtil {
      * @return true if is valid
      */
     public static boolean validImageType(String type){
-        Pattern pattern=Pattern.compile("(^image/(jpg|png|gif|bmp)$)");
+        Pattern pattern=Pattern.compile("(^image/(jpg|png|gif|bmp|jpeg)$)");
         Matcher matcher = pattern.matcher(type);
         return matcher.matches();
     }

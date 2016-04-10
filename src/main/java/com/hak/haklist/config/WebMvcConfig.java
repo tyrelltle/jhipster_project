@@ -2,6 +2,8 @@ package com.hak.haklist.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
@@ -13,6 +15,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  */
 @Configuration
 public class WebMvcConfig {
+
+    public static final int MAX_UPLOAD_SIZE = 50 * 1024 * 1024; //50MB
 
     @Bean
     public WebMvcConfigurerAdapter forwardToIndex() {
@@ -26,13 +30,13 @@ public class WebMvcConfig {
             }
         };
     }
-/*
+
     @Bean
     public MultipartResolver getMultipartResolver() {
         CommonsMultipartResolver resolver = new CommonsMultipartResolver();
-        resolver.setMaxUploadSize(5 * 1024 * 1024); // 5MB
-
+        resolver.setMaxUploadSize(MAX_UPLOAD_SIZE);
+       // resolver.setMaxInMemorySize(MAX_UPLOAD_SIZE);
         return resolver;
-    }*/
+    }
 
 }

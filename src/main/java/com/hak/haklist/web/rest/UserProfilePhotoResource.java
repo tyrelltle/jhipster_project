@@ -11,10 +11,7 @@ import com.hak.haklist.web.rest.util.ImageUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.*;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -25,7 +22,6 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.Iterator;
 
 /**
  * REST controller for managing UserProfile.
@@ -69,15 +65,14 @@ public class UserProfilePhotoResource {
     @RequestMapping(value = "/userProfiles/photo",
         method = RequestMethod.POST)
     @Timed
-    public ResponseEntity<Void> uploadImage(MultipartHttpServletRequest request) throws URISyntaxException, IOException {
+    public ResponseEntity<Void> uploadImage(MultipartHttpServletRequest request,@RequestParam("file") MultipartFile file) throws URISyntaxException, IOException {
 
         User currentUser=userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
 
 
-        Iterator<String> i=request.getFileNames();
 
-        String uploadedFile = i.next();
-        MultipartFile file = request.getFile(uploadedFile);
+
+
         String mimeType = file.getContentType();
         byte[] bytes = file.getBytes();
 
@@ -87,6 +82,7 @@ public class UserProfilePhotoResource {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
         if(!ImageUtil.validImageType(mimeType)){
+            log.error("POST /userProfiles/photo got incorect file mime type : "+mimeType);
             return new ResponseEntity<>(HttpStatus.UNSUPPORTED_MEDIA_TYPE);
         }
 

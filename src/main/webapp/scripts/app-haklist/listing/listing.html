@@ -11,9 +11,9 @@
                      on-error-src="assets/images/defaul_avatar.png"
                      alt="Card image cap">
                 <div class="card_social_block">
-                    <a class="fa fa-linkedin" ng-show="userProfiles[$parent.$index+i].linkedIn" href="{{userProfiles[$parent.$index+i].linkedIn}}"></a>
-                    <a class="fa fa-github"  ng-show="userProfiles[$parent.$index+i].gitHub" href="{{userProfiles[$parent.$index+i].gitHub}}"></a>
-                    <a class="fa fa-twitter"  ng-show="userProfiles[$parent.$index+i].twitter" href="{{userProfiles[$parent.$index+i].twitter}}"></a>
+                    <a class="fa fa-linkedin" ng-show="userProfiles[$parent.$index+i].linkedIn" ng-click="openlink(userProfiles[$parent.$index+i].linkedIn)"></a>
+                    <a class="fa fa-github"  ng-show="userProfiles[$parent.$index+i].gitHub" ng-click="openlink(userProfiles[$parent.$index+i].gitHub)"></a>
+                    <a class="fa fa-twitter"  ng-show="userProfiles[$parent.$index+i].twitter" ng-click="openlink(userProfiles[$parent.$index+i].twitter)"></a>
                 </div>
                 <div class="card-block">
                     <h2 class="card-title" style="font-size:26px">{{userProfiles[$parent.$index+i].firstName}} {{userProfiles[$parent.$index+i].lastName}}</h2>

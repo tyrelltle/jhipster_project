@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('haklistUserApp')
-    .controller('ListingController', function ($scope, $uibModal,$state, UserProfile, ParseLinks, Country,localStorageService) {
+    .controller('ListingController', function ($scope, $uibModal,$state, UserProfile, ParseLinks, Country,localStorageService,$window) {
 
         $scope.userProfiles = [];
         $scope.countries = [];
@@ -9,6 +9,9 @@ angular.module('haklistUserApp')
         $scope.reverse = true;
         $scope.page = 0;
 
+        $scope.openlink=function(url){
+            $window.open(url, '_blank');
+        }
 
         if(localStorageService.get('contest_reg_confirmed')){
             localStorageService.set('contest_reg_confirmed',false);

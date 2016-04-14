@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('haklistUserApp')
-    .controller('NavbarController', function ($scope, $location, $state,Principal,Auth) {
+    .controller('NavbarController', function ($scope, $location, $state,Principal,Auth,UniqueVisitor) {
         $scope.user={username:'',password:''};
 
         $scope.gohome=function(){
@@ -19,6 +19,7 @@ angular.module('haklistUserApp')
 
         $scope.signup=function(event){
             event.preventDefault();
+            UniqueVisitor.event('register_clicked');
             $state.go('signup');
         }
 

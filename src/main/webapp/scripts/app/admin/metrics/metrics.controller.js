@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('haklistApp')
-    .controller('MetricsController', function ($scope, MonitoringService, $uibModal) {
+    .controller('MetricsController', function ($scope, MonitoringService, $uibModal,UniqueVisitor) {
         $scope.metrics = {};
         $scope.updatingMetrics = true;
 
@@ -13,6 +13,16 @@ angular.module('haklistApp')
             }, function (promise) {
                 $scope.metrics = promise.data;
                 $scope.updatingMetrics = false;
+            });
+
+            UniqueVisitor.getSummary(function(err,data){
+                if(err) {
+                    alert(err);
+                }else{
+                    $scope.clickedReg_confirmedReg_AndcontestReg=data.clickedReg_confirmedReg_AndcontestReg;
+                    $scope.contestReg_confirmedReg=data.contestReg_confirmedReg;
+                    $scope.contestReg_notConfirmedReg=data.contestReg_notConfirmedReg;
+                }
             });
         };
 

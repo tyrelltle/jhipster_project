@@ -5,6 +5,15 @@
     <button type="button" class="btn btn-primary" ng-click="refresh()"><span class="glyphicon glyphicon-refresh"></span>&nbsp;<span>Refresh</span></button>
 </p>
 
+<h3>Annoymous Visitor Event Analytis</h3>
+
+    <p>Visitors registered contest then registered: {{contestReg_confirmedReg}}</p>
+    <p>Visitors clicked register contest but NOT registered: {{contestReg_notConfirmedReg}}</p>
+    <p>Visitors registered an account before registered contest: {{clickedReg_confirmedReg_AndcontestReg}}</p>
+
+
+
+
 <h3>JVM Metrics</h3>
 <div class="row" ng-hide="updatingMetrics">
     <div class="col-md-4">

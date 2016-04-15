@@ -1,5 +1,5 @@
 angular.module('haklistUserApp')
-    .controller('ContestRegController', function ($scope, $state, Principal,localStorageService,UserProfile,UniqueVisitor) {
+    .controller('ContestRegController', function ($scope, $state, Principal,localStorageService,UserProfile) {
         $scope.alreadyRegistered=false;
 
         Principal.identity().then(function(id) {
@@ -16,7 +16,6 @@ angular.module('haklistUserApp')
 
         $scope.register=function(event){
             event.preventDefault();
-            UniqueVisitor.event('contest_register_clicked');
             if(Principal.isAuthenticated()){
                 Principal.identity().then(function(id){
                     UserProfile.contest_reg({},function(){

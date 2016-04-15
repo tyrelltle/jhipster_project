@@ -2,13 +2,10 @@
 
 angular.module('haklistApp', ['ui.bootstrap','LocalStorageModule', 'ngResource', 'ngCacheBuster']);
 
-angular.module('haklistUserApp', ['ui.router','haklistApp','ui.bootstrap',"ngCookies"])
+angular.module('haklistUserApp', ['ui.router','haklistApp','ui.bootstrap'])
 
-    .run(function ($rootScope, $location, $window, $http, $state, Principal, Auth,UniqueVisitor) {
+    .run(function ($rootScope, $location, $window, $http, $state, Principal, Auth) {
         $state.go('home');
-
-
-        UniqueVisitor.checkNsetCookie();
 
         $rootScope.$on('$stateChangeStart', function (event, toState, toStateParams) {
             $rootScope.toState = toState;

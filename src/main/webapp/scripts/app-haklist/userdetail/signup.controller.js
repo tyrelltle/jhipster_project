@@ -68,6 +68,9 @@ angular.module('haklistUserApp')
                     username: $scope.registerAccount.login,
                     password: $scope.registerAccount.password
                 }).then(function () {
+                    mixpanel.track(
+                        "Completed Register"
+                    );
                     if($scope.file){
                         ProfilePhoto.upload($scope.file);
                     }

@@ -19,11 +19,17 @@ angular.module('haklistUserApp')
 
         $scope.signup=function(event){
             event.preventDefault();
+            mixpanel.track(
+                "Homepage Register"
+            );
             $state.go('signup');
         }
 
         $scope.goto_contest=function(event){
             event.preventDefault();
+            mixpanel.track(
+                "Click Contest Tab"
+            );
             $state.go('contest_reg');
             $('body').attr('class','blackbody');
 

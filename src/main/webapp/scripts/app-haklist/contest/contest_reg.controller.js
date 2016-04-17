@@ -16,7 +16,12 @@ angular.module('haklistUserApp')
 
         $scope.register=function(event){
             event.preventDefault();
+
             if(Principal.isAuthenticated()){
+                mixpanel.track(
+                    "Contest Register",
+                    {"authenticated": "yes"}
+                );
                 Principal.identity().then(function(id){
                     UserProfile.contest_reg({},function(){
                         $scope.alreadyRegistered=true;
@@ -25,6 +30,10 @@ angular.module('haklistUserApp')
                 });
 
             }else{
+                mixpanel.track(
+                    "Contest Register",
+                    {"authenticated": "nope"}
+                );
                 localStorageService.set('need_contest_Reg',true);
                 $state.go('signup');
             }
